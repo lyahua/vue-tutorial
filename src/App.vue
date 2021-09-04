@@ -1,22 +1,18 @@
 <template>
   <div id="app">
- 
-    <!-- <router-view></router-view> -->
-    <Layout/>
+    <Layouts />
   </div>
 </template>
 
 <script>
-
-import Layout from "@/layouts/Layout.vue"
+import { Layouts } from '@/components/index.js';
 export default {
   name: 'App',
   components: {
-    Layout
-  }
-}
+    Layouts,
+  },
+};
 </script>
 
 <style>
-
 </style>

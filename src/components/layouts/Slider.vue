@@ -1,13 +1,13 @@
 <template>
   <div class="slider">
-    <el-menu default-active="2" class="el-menu-vertical-demo">
+    <el-menu default-active="1001"   background-color="#545c64" active-text-color='#303133' unique-opened>
       <el-submenu :index="item.id+''" v-for='item in routes' :key='item.id' >
         <template slot="title">
-          <i class="el-icon-location"></i>
+          <i :class='item.icon'></i>
           <span>{{item.text}}</span>
         </template>
         <el-menu-item v-for='item2 in item.arr' :key='item2.id'  :index='item2.id+""'>
-          <router-link :to="item2.path"  v-text='item2.meta.title' tag='div'></router-link>
+          <router-link :to="item2.path"  v-text='item2.meta.title' tag='div' exact-active-class="lightHeight"></router-link>
         </el-menu-item>
       </el-submenu>
     </el-menu>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import arr from '../pages/index'
+import arr from '@/pages/index'
 export default {
   data() {
     return {
@@ -49,5 +49,14 @@ export default {
   bottom: 0;
   background: #fff;
   overflow: auto;
+}
+.el-menu{
+  height: 100%;
+}
+.el-submenu .el-menu-item{
+  min-width:0px;
+}
+.lightHeight{
+  color:orange;
 }
 </style>

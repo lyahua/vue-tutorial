@@ -20,7 +20,7 @@ export default {
   position: absolute;
   top: 0;
   left: 150px;
-  height: 60px;
+  height: 42px;
   right: 0;
   background: #fff;
 }

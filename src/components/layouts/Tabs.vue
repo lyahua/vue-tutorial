@@ -56,7 +56,13 @@ export default {
   render() {
     return (
       <div class='l_Tabs_wrap'>
-        <el-tabs type='card' closable={this.$store.state.tagRoute.length>1} value={this.activeKey} on-tab-click={this.onTabClick.bind(this)} on-tab-remove={this.onTabRemove}>
+        <el-tabs
+          type='card'
+          closable={this.$store.state.tagRoute.length > 1}
+          value={this.activeKey}
+          on-tab-click={this.onTabClick.bind(this)}
+          on-tab-remove={this.onTabRemove}
+        >
           {this.createdTag()}
           {/* 
           <el-tab-pane label='用户管理' name='first'></el-tab-pane>
@@ -74,6 +80,6 @@ export default {
   left: 64px;
   right: 10px;
   bottom: 0px; */
-  width:100%;
+  width: 100%;
 }
 </style>
