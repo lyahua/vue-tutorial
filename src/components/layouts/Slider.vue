@@ -1,6 +1,6 @@
 <template>
   <div class="slider">
-    <el-menu default-active="1001"   background-color="#545c64" active-text-color='#303133' unique-opened>
+    <el-menu default-active="1001"   background-color="#545c64" active-text-color='#303133'>
       <el-submenu :index="item.id+''" v-for='item in routes' :key='item.id' >
         <template slot="title">
           <i :class='item.icon'></i>
