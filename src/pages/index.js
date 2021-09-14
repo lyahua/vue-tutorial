@@ -1,9 +1,14 @@
-import TableData from '@/pages/test-code/table-data.vue'
+// import TableData from '@/pages/test-code/table-data.vue'
+import Home from '@/pages/test-code/home.vue'
 import TreeTest from '@/pages/test-code/tree-test.vue'
 import Search from '@/pages/test-code/search.vue'
 import Test0831 from '@/pages/test-code/test0831.vue'
 import Test0901 from '@/pages/test-code/test0901.vue'
 import Test0902 from '@/pages/test-code/test0902.vue'
+import Test0905 from '@/pages/test-code/test0905.vue'
+import Test0914 from '@/pages/test-code/test0914.vue'
+
+import Test0904 from '@/pages/git-operation/test0904.vue'
 
 const routes = [
   {
@@ -17,7 +22,7 @@ const routes = [
           title: '首页',
         },
         path: '/',
-        component: TableData,
+        component: Home,
       },
     ],
   },
@@ -65,9 +70,40 @@ const routes = [
         },
         path:'/0902',
         component:Test0902
+      },
+      {
+        id:1106,
+        meta:{
+          title:'0905'
+        },
+        path:'/0905',
+        component:Test0905
+      },
+      {
+        id:1107,
+        meta:{
+          title:'0914'
+        },
+        path:'/0914',
+        component:Test0914
       }
     ],
   },
+  {
+    id:12,
+    text:'git基本操作',
+    icon:'el-icon-location',
+    arr:[
+      {
+        id: 1201,
+        meta: {
+          title: 'git操作',
+        },
+        path: '/test0904',
+        component: Test0904,
+      },
+    ]
+  }
 ]
 
 export default routes
