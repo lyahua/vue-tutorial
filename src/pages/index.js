@@ -4,6 +4,7 @@ import Search from '@/pages/test-code/search.vue'
 import Test0831 from '@/pages/test-code/test0831.vue'
 import Test0901 from '@/pages/test-code/test0901.vue'
 import Test0902 from '@/pages/test-code/test0902.vue'
+import Test0923 from '@/pages/test-code/test0923.vue'
 
 const routes = [
   {
@@ -65,6 +66,13 @@ const routes = [
         },
         path:'/0902',
         component:Test0902
+      },{
+        id:1106,
+        meta:{
+          title:'0923'
+        },
+        path:'/0923',
+        component:Test0923
       }
     ],
   },
