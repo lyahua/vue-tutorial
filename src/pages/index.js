@@ -9,6 +9,7 @@ import Test0905 from '@/pages/test-code/test0905.vue'
 import Test0914 from '@/pages/test-code/test0914.vue'
 
 import Test0904 from '@/pages/git-operation/test0904.vue'
+import Test0923 from '@/pages/test-code/test0923.vue'
 
 const routes = [
   {
@@ -86,6 +87,13 @@ const routes = [
         },
         path:'/0914',
         component:Test0914
+      },{
+        id:1108,
+        meta:{
+          title:'0923'
+        },
+        path:'/0923',
+        component:Test0923
       }
     ],
   },

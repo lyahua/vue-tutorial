@@ -1,4 +1,4 @@
-# demoone
+# vue-tutorial
 
 ## Project setup
 ```
