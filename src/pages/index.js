@@ -10,19 +10,20 @@ import Test0914 from '@/pages/test-code/test0914.vue'
 
 import Test0904 from '@/pages/git-operation/test0904.vue'
 import Test0923 from '@/pages/test-code/test0923.vue'
+import Test0925 from '@/pages/test-code/test0925.vue'
 
 const routes = [
   {
     id: 10,
-    text: '首页',
-    icon:'el-icon-location',
+    text: "首页",
+    icon: "el-icon-location",
     arr: [
       {
         id: 1001,
         meta: {
-          title: '首页',
+          title: "首页",
         },
-        path: '/',
+        path: "/",
         component: Home,
       },
     ],
@@ -94,6 +95,13 @@ const routes = [
         },
         path:'/0923',
         component:Test0923
+      },{
+        id:1109,
+        meta:{
+          title:'0925'
+        },
+        path:'/0925',
+        component:Test0925
       }
     ],
   },
@@ -114,4 +122,4 @@ const routes = [
   }
 ]
 
-export default routes
+export default routes;
