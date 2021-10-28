@@ -1,6 +1,8 @@
 <script>
 import { testCnode } from '@/utils/api';
 import { message } from 'ant-design-vue';
+import moment from 'moment'
+
 export default {
   data() {
     return {
@@ -62,6 +64,7 @@ export default {
       ], // 数据字典
       loading: false, // 按钮loading
       tableLoading: false, // 表格loading
+      form:{}
     };
   },
 
@@ -142,6 +145,11 @@ export default {
     },
   },
 
+  created() {
+    this.form = this.$form.createForm(this, { name: 'form' });
+    console.log('this.form.get',this.form.getFieldValue('time'))
+  },
+
   mounted() {},
 
   render() {
@@ -149,6 +157,13 @@ export default {
       <div class='page'>
         <div>test1018</div>
         <div>{this.status}</div>
+        <a-form form={this.form}>
+          <a-form-item label='时间'>
+            {this.form.getFieldDecorator('time', { initialValue: [moment().add({ day: -1 }), moment()], rules: [{ required: false }] })(
+              <a-range-picker format='YYYY-MM-DD HH:mm:ss' />
+            )}
+          </a-form-item>
+        </a-form>
         <a-button type='primary' icon='search' on-click={this.onSearch} loading={this.loading}>
           搜索
         </a-button>
