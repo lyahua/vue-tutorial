@@ -11,6 +11,9 @@ import Test0914 from '@/pages/test-code/test0914.vue'
 import Test0904 from '@/pages/git-operation/test0904.vue'
 import Test0923 from '@/pages/test-code/test0923.vue'
 import Test0925 from '@/pages/test-code/test0925.vue'
+import Test1018 from '@/pages/test-code/test1018.vue'
+import Test1026 from '@/pages/test-code/test1026.vue'
+import Test1028 from '@/pages/test-code/test1028.vue'
 
 const routes = [
   {
@@ -102,6 +105,27 @@ const routes = [
         },
         path:'/0925',
         component:Test0925
+      },{
+        id:1110,
+        meta:{
+          title:'1018'
+        },
+        path:'/1018',
+        component:Test1018
+      },{
+        id:1111,
+        meta:{
+          title:'1026'
+        },
+        path:'/1026',
+        component:Test1026
+      },{
+        id:1112,
+        meta:{
+          title:'1028'
+        },
+        path:'/1028',
+        component:Test1028
       }
     ],
   },

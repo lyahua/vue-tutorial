@@ -7,6 +7,11 @@ module.exports = {
         target: 'https://c.y.qq.com',  // 目标远程服务器
         ws: true,
         changeOrigin: true   // 允许改变“域”
+      },
+      '/api': {
+        target: 'https://cnodejs.org',
+        ws: true,
+        changeOrigin: true
       }
     }
   }
