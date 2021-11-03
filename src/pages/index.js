@@ -14,6 +14,8 @@ import Test0925 from '@/pages/test-code/test0925.vue'
 import Test1018 from '@/pages/test-code/test1018.vue'
 import Test1026 from '@/pages/test-code/test1026.vue'
 import Test1028 from '@/pages/test-code/test1028.vue'
+import Test1102 from '@/pages/test-code/test1102.vue'; // 多个数据字典转换
+import Test1103 from '@/pages/test-code/test1103.vue'; // 对象循环键和值
 
 const routes = [
   {
@@ -126,6 +128,20 @@ const routes = [
         },
         path:'/1028',
         component:Test1028
+      },{
+        id:1113,
+        meta:{
+          title:'1102'
+        },
+        path:'/1102',
+        component:Test1102
+      },{
+        id:1114,
+        meta:{
+          title:'1103'
+        },
+        path:'/1103',
+        component:Test1103
       }
     ],
   },
