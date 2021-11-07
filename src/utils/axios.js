@@ -16,6 +16,10 @@ const instance = axios.create({
 instance.interceptors.request.use(function (config) {
   // 在请求被send出去之前，你可以在这里做一些事儿
   // 加token
+<<<<<<< HEAD
+=======
+  // console.log('请求拦截器', config)
+>>>>>>> liuyahuaTest02
   console.log('请求拦截器', config)
   return config
 }, function (error) {
@@ -24,6 +28,7 @@ instance.interceptors.request.use(function (config) {
 
 // 封装响应拦截器
 instance.interceptors.response.use(function (res) {
+<<<<<<< HEAD
   let response = null
   // 当后端返回数据，抵达客户端之前时
   // 要数据过滤
@@ -39,6 +44,9 @@ instance.interceptors.response.use(function (res) {
     console.log('调接口失败')
   }
   return response
+=======
+  return res
+>>>>>>> liuyahuaTest02
 }, function (error) {
   return Promise.reject(error)
 })

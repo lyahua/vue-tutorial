@@ -9,3 +9,14 @@ export function fetchQqMusic(params) {
     params
   })
 }
+<<<<<<< HEAD
+=======
+
+export function testCnode(params){
+  return fetch({
+    url:'/api/v1/topics',
+    method:'GET',
+    params
+  })
+}
+>>>>>>> liuyahuaTest02
