@@ -9,8 +9,6 @@ export function fetchQqMusic(params) {
     params
   })
 }
-<<<<<<< HEAD
-=======
 
 export function testCnode(params){
   return fetch({
@@ -19,4 +17,3 @@ export function testCnode(params){
     params
   })
 }
->>>>>>> liuyahuaTest02
