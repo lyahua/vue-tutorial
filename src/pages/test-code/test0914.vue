@@ -2,23 +2,47 @@
   <div>
     <h1>自定义指令</h1>
     <div class="box" v-drag></div>
-    <input v-focus/>
-    <div>
-      clientX:相对于浏览器有效区域的x轴坐标
-
-      offsetX:相对于事件源x轴的坐标
-    </div>
+    <input v-focus />
+    <div>clientX:相对于浏览器有效区域的x轴坐标 offsetX:相对于事件源x轴的坐标</div>
+    <a-button type="primary" @click="showModal" v-drag> Open Modal with async logic </a-button>
+    <a-modal title="Title" :visible="visible" :confirm-loading="confirmLoading" @ok="handleOk" @cancel="handleCancel" v-drag>
+      <p>{{ ModalText }}</p>
+    </a-modal>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      ModalText: 'Content of the modal',
+      visible: false,
+      confirmLoading: false,
+    };
+  },
+  methods: {
+    showModal() {
+      this.visible = true;
+    },
+    handleOk() {
+      this.ModalText = 'The modal will be closed after two seconds';
+      this.confirmLoading = true;
+      setTimeout(() => {
+        this.visible = false;
+        this.confirmLoading = false;
+      }, 2000);
+    },
+    handleCancel() {
+      console.log('Clicked cancel button');
+      this.visible = false;
+    },
+  },
   directives: {
     // 指令1
     focus: {
       // 指令的定义
       inserted: function (el) {
-        console.log("el",el)
+        console.log('el', el);
         el.focus();
       },
     },
@@ -27,25 +51,25 @@ export default {
     drag: {
       // 指令的定义
       inserted: function (el) {
-        console.log("el2",el)
-        el.style.position='absolute'
-        el.onmousedown=function(ev){
-          console.log('ev',ev)
-          var sX=ev.clientX-el.offsetLeft;
-          var sY=ev.clientY-el.offsetTop;
-          document.onmousemove=function(ev){
-            var eX=ev.clientX-sX;
-            var eY=ev.clientY-sY;
+        console.log('el2', el);
+        el.style.position = 'absolute';
+        el.onmousedown = function (ev) {
+          console.log('ev', ev);
+          var sX = ev.clientX - el.offsetLeft;
+          var sY = ev.clientY - el.offsetTop;
+          document.onmousemove = function (ev) {
+            var eX = ev.clientX - sX;
+            var eY = ev.clientY - sY;
             // 不断的更新元素的left、top值
-            el.style.left=eX+'px'
-            el.style.top=eY+'px'
-          }
+            el.style.left = eX + 'px';
+            el.style.top = eY + 'px';
+          };
 
-          document.onmouseup=function(){
+          document.onmouseup = function () {
             // 清除mousemove事件
-            document.onmousemove=null;
-          }
-        }
+            document.onmousemove = null;
+          };
+        };
       },
     },
   },
