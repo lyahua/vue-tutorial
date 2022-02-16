@@ -5,6 +5,8 @@ import Test0831 from '@/pages/test-code/test0831.vue'
 import Test0901 from '@/pages/test-code/test0901.vue'
 import Test0902 from '@/pages/test-code/test0902.vue'
 
+import Test1029 from '@/pages/comme-use/test1029.vue'
+
 const routes = [
   {
     id: 10,
@@ -68,6 +70,21 @@ const routes = [
       }
     ],
   },
+  {
+    id:12,
+    text:'业务',
+    icon:'el-icon-location',
+    arr:[
+      {
+        id: 1201,
+        meta: {
+          title: '冒泡排序',
+        },
+        path: '/1029',
+        component: Test1029,
+      }
+    ]
+  }
 ]
 
 export default routes
