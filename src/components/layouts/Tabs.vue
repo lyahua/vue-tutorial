@@ -1,4 +1,5 @@
 <script>
+import {mapState,mapMutations} from 'vuex'
 export default {
   name: 'Tabs',
   data() {
@@ -13,7 +14,8 @@ export default {
       path: this.$route.fullPath,
       title: this.$route.meta.title,
     };
-    this.$store.commit('addRoutesToTab', data);
+    // this.$store.commit('addRoutesToTab', data);
+    this.addRoutesToTab(data)
 
     // 刷新点击左侧菜单右侧tab高亮跟随
     this.activeKey = this.$route.fullPath;
@@ -27,9 +29,10 @@ export default {
   },
 
   methods: {
+    ...mapMutations('routeGenertate',['addRoutesToTab','removeRoutesInTab']),
     // 根据存储在vuex里面的tab来生成标签
     createdTag() {
-      return this.$store.state.tagRoute.map(ele => {
+      return this.tagRoute.map(ele => {
         return [<el-tab-pane label={ele.title} key={ele.path} name={ele.path}></el-tab-pane>];
       });
     },
@@ -44,13 +47,17 @@ export default {
     // 点击关闭标签时关闭
     onTabRemove(tagName) {
       console.log('click cose', tagName);
-      this.$store.commit('removeRoutesInTab', tagName);
+      // this.$store.commit('removeRoutesInTab', tagName);
+      this.removeRoutesInTab(tagName)
 
       if (this.activeKey === tagName) {
-        this.$router.history.push(this.$store.state.tagRoute[this.$store.state.tagRoute.length - 1].path);
-        this.activeKey = this.$store.state.tagRoute[this.$store.state.tagRoute.length - 1].path;
+        this.$router.history.push(this.tagRoute[this.tagRoute.length - 1].path);
+        this.activeKey = this.tagRoute[this.tagRoute.length - 1].path;
       }
     },
+  },
+  computed:{
+    ...mapState('routeGenertate',['tagRoute'])
   },
 
   render() {
@@ -58,7 +65,7 @@ export default {
       <div class='l_Tabs_wrap'>
         <el-tabs
           type='card'
-          closable={this.$store.state.tagRoute.length > 1}
+          closable={this.tagRoute.length > 1}
           value={this.activeKey}
           on-tab-click={this.onTabClick.bind(this)}
           on-tab-remove={this.onTabRemove}

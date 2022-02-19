@@ -27,9 +27,9 @@ export default {
   },
 
   mounted(){
-      this.add(fetchX,fetchY,function(sum){
-          console.log(sum); // is very easy
-      })
+      // this.add(fetchX,fetchY,function(sum){
+      //     console.log(sum); // is very easy
+      // })
   },
 
   render() {

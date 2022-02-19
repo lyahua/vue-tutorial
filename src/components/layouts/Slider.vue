@@ -16,11 +16,15 @@
 
 <script>
 import arr from '@/pages/index'
+import {mapMutations} from 'vuex'
 export default {
   data() {
     return {
       routes: [], // 将路由赋值在这里进行遍历菜单
     };
+  },
+  methods:{
+    ...mapMutations('routeGenertate',['addRoutesToTab'])
   },
 
   watch: {
@@ -30,7 +34,8 @@ export default {
         path: key.fullPath,
         title: key.meta.title,
       };
-      this.$store.commit('addRoutesToTab', data);
+      // this.$store.commit('addRoutesToTab', data);
+      this.addRoutesToTab(data)
     },
   },
 

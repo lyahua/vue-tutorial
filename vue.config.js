@@ -12,7 +12,18 @@ module.exports = {
         target: 'https://cnodejs.org',
         ws: true,
         changeOrigin: true
-      }
+      },
+      '/splcloud': {
+        target: 'https://c.y.qq.com',
+        ws: true,
+        changeOrigin: true
+      },
+      '/v2': {
+        target: 'https://complexsearch.kugou.com',
+        ws: true,
+        changeOrigin: true
+      },
+      
     }
   }
 }

@@ -2,6 +2,7 @@
   <div>
     <h1>Hello World</h1>
     <h2>当努力成为常态，生活便充满了希望</h2>
+    
   </div>
 </template>
 
@@ -17,6 +18,8 @@ export default {
       let arr = ele.split('=');
       params[arr[0]] = arr[1];
     });
+    params.w='周杰伦'
+    params.n='10'
     fetchQqMusic(params).then(res => {
       console.log('res,res',res);
     });
