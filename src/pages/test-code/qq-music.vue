@@ -24,9 +24,16 @@
         </div>
       </div>
       <div class="content">
-        <div v-for="item in cacheMusicList[activeName]" :key="item.id">
+        <div
+          v-for="item in cacheMusicList[activeName]"
+          :key="item.id"
+          @click="goMusicDetail(item.name, item.singer, item.mid)"
+        >
           <span>{{ item.name }}</span>
+          <span>===</span>
           <span>{{ item.singer }}</span>
+          <span>===</span>
+          <span>{{ item.mid }}</span>
         </div>
       </div>
     </div>
@@ -36,7 +43,7 @@
 <script>
 import { message } from "ant-design-vue";
 // import { getNewQqMusic, getKgMusic } from "@/utils/api";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 export default {
   name: "MusicList",
   data() {
@@ -48,14 +55,29 @@ export default {
         { id: 3, name: "小猫" },
         { id: 4, name: "王狗" },
       ],
-      activeName: "",
+      // activeName: "",
     };
+  },
+  // 如果是从音乐详情页面过来的话，就把目标页面的isBack改为true
+  beforeRouteEnter(to, from, next) {
+    if (from.name === "QqMusicDetail") {
+      to.meta.isBack = true;
+    }
+    next();
   },
   created() {
     console.log("this.$stroe", this.$store);
+    // 取反可以判断出页面是否需要缓存
+    if (!this.$route.meta.isBack) {
+      // 清空缓存的数据
+      this.updateActiveName(null);
+      this.updateCacheMusicList(null);
+    }
+    this.$route.meta.isBack = false; // 状态再进行重置
   },
   methods: {
     ...mapActions("music", ["getQqMusicInterface", "getCacheQqMusicInterface"]), // 接口
+    ...mapMutations("music", ["updateActiveName", "updateCacheMusicList"]),
     onSearch(val) {
       let str =
         "_=1645232392501&cv=4747474&ct=24&format=json&inCharset=utf-8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=1&uin=1251271810&g_tk_new_20200303=2085573607&g_tk=2085573607&hostUin=0&is_xml=0&key=%E5%91%A8%E6%9D%B0";
@@ -87,16 +109,28 @@ export default {
         params[arr[0]] = arr[1];
       });
       params.key = name;
-      this.activeName = name;
-      console.log("params", params);
+      // this.activeName = name;
+      this.updateActiveName(name);
+      // console.log("params", params);
       let lst = this.cacheMusicList[name];
       if (!(lst && lst.length > 0)) {
         this.getCacheQqMusicInterface(params);
       }
     },
+    goMusicDetail(name, singer, mid) {
+      console.log("name", name, "singer", singer, "mid", mid);
+      this.$router.history.push({
+        name: "QqMusicDetail",
+        params: {
+          name,
+          singer,
+          mid,
+        },
+      });
+    },
   },
   computed: {
-    ...mapState("music", ["musicList", "cacheMusicList"]),
+    ...mapState("music", ["musicList", "cacheMusicList", "activeName"]),
   },
 };
 </script>

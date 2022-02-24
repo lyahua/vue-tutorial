@@ -2,7 +2,7 @@
   <div>
     <h1>Hello World</h1>
     <h2>当努力成为常态，生活便充满了希望</h2>
-    
+    <a-button type='primary' @click="goQqMusicPage">去qq音乐页面</a-button>
   </div>
 </template>
 
@@ -24,6 +24,11 @@ export default {
       console.log('res,res',res);
     });
   },
+  methods:{
+    goQqMusicPage(){
+      this.$router.history.push('/0219')
+    }
+  }
 };
 </script>
 

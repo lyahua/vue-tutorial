@@ -6,6 +6,10 @@ export default {
     str: "hello world",
     musicList: [],
     cacheMusicList: {}, // 测试缓存的musiclist
+    activeName: "", // 当前选中的歌手名字
+    midCache: "", // music-detail
+    nameCache: "", // music-name,
+    singerCache: "", // music-singer
   },
   getters: {},
   mutations: {
@@ -14,8 +18,40 @@ export default {
     },
     // 根据条件更新缓存music，有则用，无则更新
     updateCacheMusicList(state, payload) {
-      state.cacheMusicList[payload.k] = payload.v;
-      state.cacheMusicList=JSON.parse(JSON.stringify(state.cacheMusicList))
+      if (payload !== null) {
+        state.cacheMusicList[payload?.k] = payload?.v;
+        state.cacheMusicList = JSON.parse(JSON.stringify(state.cacheMusicList));
+      } else {
+        state.cacheMusicList = {};
+      }
+    },
+    // 更新当前选中的name
+    updateActiveName(state, payload) {
+      state.activeName = payload;
+    },
+    // 更新mid
+    updateMid(state, payload) {
+      if (payload !== null) {
+        state.midCache = payload;
+      } else {
+        state.midCache = null;
+      }
+    },
+    // 更新name
+    updateName(state, payload) {
+      if (payload !== null) {
+        state.nameCache = payload;
+      } else {
+        state.nameCache = null;
+      }
+    },
+    // 更新singer
+    updateSinger(state, payload) {
+      if (payload !== null) {
+        state.singerCache = payload;
+      } else {
+        state.singerCache = null;
+      }
     },
   },
   actions: {

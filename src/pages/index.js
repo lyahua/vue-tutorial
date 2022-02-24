@@ -15,9 +15,11 @@ import Test1018 from "@/pages/test-code/test1018.vue";
 import Test1026 from "@/pages/test-code/test1026.vue";
 import Test1028 from "@/pages/test-code/test1028.vue";
 import QqMusic from "@/pages/test-code/qq-music.vue";
+import QqMusicDetail from "@/pages/test-code/qq-music-detail.vue";
+import QqMusicComplete from "@/pages/test-code/qq-music-complete.vue";
 
-import Test1102 from '@/pages/test-code/test1102.vue'; // 多个数据字典转换
-import Test1103 from '@/pages/test-code/test1103.vue'; // 对象循环键和值
+import Test1102 from "@/pages/test-code/test1102.vue"; // 多个数据字典转换
+import Test1103 from "@/pages/test-code/test1103.vue"; // 对象循环键和值
 
 const routes = [
   {
@@ -140,26 +142,50 @@ const routes = [
         id: 1113,
         meta: {
           title: "0219",
+          isBack: false,
         },
         path: "/0219",
         component: QqMusic,
       },
-        
+
       {
-        id:11132,
-        meta:{
-          title:'1102'
+        id: 11132,
+        meta: {
+          title: "1102",
         },
-        path:'/1102',
-        component:Test1102
-      },{
-        id:1114,
-        meta:{
-          title:'1103'
+        path: "/1102",
+        component: Test1102,
+      },
+      {
+        id: 1114,
+        meta: {
+          title: "1103",
         },
-        path:'/1103',
-        component:Test1103
-      }
+        path: "/1103",
+        component: Test1103,
+      },
+      {
+        id: 1115,
+        meta: {
+          title: "0222",
+          isBack: false,
+        },
+        path: "/0222",
+        component: QqMusicDetail,
+        name: "QqMusicDetail",
+        isNotNav: true,
+      },
+      {
+        id: 1116,
+        meta: {
+          title: "0223",
+          isBack: false,
+        },
+        path: "/0223",
+        component: QqMusicComplete,
+        name: "QqMusicComplete",
+        isNotNav: true,
+      },
     ],
   },
   {

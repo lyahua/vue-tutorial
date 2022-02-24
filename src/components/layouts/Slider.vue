@@ -6,9 +6,12 @@
           <i :class='item.icon'></i>
           <span>{{item.text}}</span>
         </template>
-        <el-menu-item v-for='item2 in item.arr' :key='item2.id'  :index='item2.id+""'>
-          <router-link :to="item2.path"  v-text='item2.meta.title' tag='div' exact-active-class="lightHeight"></router-link>
-        </el-menu-item>
+
+        <div v-for='item2 in item.arr' :key='item2.id'  :index='item2.id+""'>
+          <el-menu-item  v-if='!item2.isNotNav'>
+            <router-link :to="item2.path"  v-text='item2.meta.title' tag='div' exact-active-class="lightHeight"></router-link>
+          </el-menu-item>
+        </div>
       </el-submenu>
     </el-menu>
   </div>
