@@ -17,9 +17,12 @@ import Test1028 from "@/pages/test-code/test1028.vue";
 import QqMusic from "@/pages/test-code/qq-music.vue";
 import QqMusicDetail from "@/pages/test-code/qq-music-detail.vue";
 import QqMusicComplete from "@/pages/test-code/qq-music-complete.vue";
+import Test0226 from "@/pages/test-code/test0226.vue";
 
 import Test1102 from "@/pages/test-code/test1102.vue"; // 多个数据字典转换
 import Test1103 from "@/pages/test-code/test1103.vue"; // 对象循环键和值
+
+import Prototype from '@/pages/es6-js/prototype.vue'
 
 const routes = [
   {
@@ -34,6 +37,7 @@ const routes = [
         },
         path: "/",
         component: Home,
+        name:'Home'
       },
     ],
   },
@@ -186,6 +190,16 @@ const routes = [
         name: "QqMusicComplete",
         isNotNav: true,
       },
+      {
+        id: 1117,
+        meta: {
+          title: "0226",
+          isBack: false,
+        },
+        path: "/0226",
+        component: Test0226,
+        name: "Test0226",
+      },
     ],
   },
   {
@@ -200,6 +214,21 @@ const routes = [
         },
         path: "/test0904",
         component: Test0904,
+      },
+    ],
+  },
+  {
+    id: 13,
+    text: "es6",
+    icon: "el-icon-location",
+    arr: [
+      {
+        id: 1301,
+        meta: {
+          title: "prototype",
+        },
+        path: "/prototype",
+        component: Prototype,
       },
     ],
   },
