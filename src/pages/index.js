@@ -22,7 +22,9 @@ import Test0226 from "@/pages/test-code/test0226.vue";
 import Test1102 from "@/pages/test-code/test1102.vue"; // 多个数据字典转换
 import Test1103 from "@/pages/test-code/test1103.vue"; // 对象循环键和值
 
-import Prototype from '@/pages/es6-js/prototype.vue'
+import Prototype from "@/pages/es6-js/prototype.vue";
+import Test0428 from "@/pages/test-code/test0428.vue";
+import TestMock from "@/pages/test-code/test-mock.vue";
 
 const routes = [
   {
@@ -37,7 +39,7 @@ const routes = [
         },
         path: "/",
         component: Home,
-        name:'Home'
+        name: "Home",
       },
     ],
   },
@@ -229,6 +231,22 @@ const routes = [
         },
         path: "/prototype",
         component: Prototype,
+      },
+      {
+        id: 1302,
+        meta: {
+          title: "test0428",
+        },
+        path: "/test0428",
+        component: Test0428,
+      },
+      {
+        id: 1303,
+        meta: {
+          title: "testmock",
+        },
+        path: "/testmock",
+        component: TestMock,
       },
     ],
   },
