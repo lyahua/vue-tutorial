@@ -25,6 +25,7 @@ import Test1103 from "@/pages/test-code/test1103.vue"; // 对象循环键和值
 import Prototype from "@/pages/es6-js/prototype.vue";
 import Test0428 from "@/pages/test-code/test0428.vue";
 import TestMock from "@/pages/test-code/test-mock.vue";
+import Test0510 from "@/pages/test-code/test0510.vue";
 
 const routes = [
   {
@@ -247,6 +248,14 @@ const routes = [
         },
         path: "/testmock",
         component: TestMock,
+      },
+      {
+        id: 1304,
+        meta: {
+          title: "test0510",
+        },
+        path: "/test0510",
+        component: Test0510,
       },
     ],
   },
