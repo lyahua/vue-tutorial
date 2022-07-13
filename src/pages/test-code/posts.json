@@ -1,12 +1,63 @@
 {
-    "status": 0,
-    "data": [
-        {
-            "id": 1001,
-            "company": "10001",
-            "username": "ceshi1",
-            "age": 25
-        }
+    "SYSTEM": "NT-NMPS",
+    "ISURGENT": "Y",
+    "PURNO": "CA133922050428",
+    "UNDERTAKEID": "zt6196",
+    "PRECATDEPTNO": "1800330702_设备资材科",
+    "LIST": [
+      {
+        "CRETIME": "2022-05-05 16:32:07",
+        "CREUSER": "zt6196_戴奇龙",
+        "PLANAMT": 3000,
+        "REQQTY": 3,
+        "PLANAPPUSER": "zt49155_王宏",
+        "COSTCENTER": "W91411_转炉3",
+        "FILES": [],
+        "USEDEPT": "A180040_炼钢厂",
+        "UPDTIME": "2022-05-05 16:07:39",
+        "ITEMMODEL": "OX/B-2/DN25/4.0MPa",
+        "PLANUSEDATE": "2022-04-30",
+        "ITEMMOREDESC": "适用介质  ;阀板材质  ;特殊要求  ;阀体结构长度  mm;滤网材质  ;工作温度  ;通径  mm;连接方式  ;工作介质  ;阀体材质  ;壳体材质  ;公称压力  Mpa;过滤精度  目",
+        "REQMEMO": "",
+        "DRAWNO": "",
+        "UPDUSER": "zt6196_戴奇龙",
+        "ITEMUNIT": "套",
+        "REQITEMNO": "0001",
+        "INVENTORYTYPE": "N",
+        "ITEMMATERIAL": "",
+        "REQNO": "QG133922050183",
+        "ITEMID": "B06-01-15-0258",
+        "ITEMNAME": "氧气用点阀箱",
+        "PLANITEMMEMO": ""
+      },
+      {
+        "CRETIME": "2022-05-30 15:04:46",
+        "CREUSER": "zt6196_戴奇龙",
+        "PLANAMT": 641.025,
+        "REQQTY": 50,
+        "PLANAPPUSER": "zt42910_管薛周",
+        "COSTCENTER": "W90811_1#高炉",
+        "FILES": [],
+        "USEDEPT": "A180039_炼铁厂",
+        "UPDTIME": "2022-05-30 14:41:55",
+        "ITEMMODEL": "YT/A-JD10",
+        "PLANUSEDATE": "2022-06-20",
+        "ITEMMOREDESC": "管件特征形式   ;规格   ;材质   ;特殊要求   ;执行标准   ;其他   ",
+        "REQMEMO": "",
+        "DRAWNO": "",
+        "UPDUSER": "zt6196_戴奇龙",
+        "ITEMUNIT": "套",
+        "REQITEMNO": "0083",
+        "INVENTORYTYPE": "N",
+        "ITEMMATERIAL": "",
+        "REQNO": "QG133922051106",
+        "ITEMID": "C04-10-08-0193",
+        "ITEMNAME": "氧气用点阀箱快速接头",
+        "PLANITEMMEMO": "铜制品，宝塔型，给机修"
+      }
     ],
-    "msg": ""
-}
+    "UNDERTAKENAME": "戴奇龙",
+    "TENDERTYPE": "01",
+    "COMPANYID": "1339",
+    "PURCODE": "L"
+  }

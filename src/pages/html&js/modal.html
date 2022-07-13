@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        .dialog-contain {
+            width: 300px;
+            height: 200px;
+            background: #ccc;
+        }
+
+        .dialog-content {
+            height: 160px;
+        }
+
+        .dialog-footer {
+            width: 300px;
+            height: 40px;
+            box-sizing: border-box;
+            border-top: 1px solid #000;
+            display: flex;
+            align-items: center;
+            flex-direction: row-reverse;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dialog-contain">
+        <div class="dialog-content">
+            <input type="text" />
+        </div>
+        <div class="dialog-footer">
+            <button class="cancle">取消</button>
+            <button class="confirm">确定</button>
+        </div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            const cancleBtn = document.querySelector(".cancle");
+            const confirmBtn = document.querySelector(".confirm");
+            const inputText = document.querySelector(".dialog-content>input");
+            const dialog = document.querySelector('.dialog-contain');
+
+            const boxWidth = document.querySelector('body').clientWidth - dialog.clientWidth;
+            const boxHeight = document.querySelector('body').clientHeight - dialog.clientHeight;
+
+            confirmBtn.addEventListener("click", () => {
+                //   console.log(inputText.value);
+                do {
+
+                    dialog.style.position = 'absolute';
+                    dialog.style.left = `${Math.random() * boxWidth}px`;
+                    dialog.style.top = `${Math.random() * boxHeight}px`;
+                } while (inputText.value != '1')
+            });
+        };
+    </script>
+</body>
+
+</html>

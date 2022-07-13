@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>随机生成</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      .content {
+        height: 100%;
+      }
+      .star {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        cursor: pointer;
+      }
+    
+    </style>
+  </head>
+  <body>
+    <div class="content"></div>
+    <script>
+      window.onload = function() {
+        const generateRandomHexColor = () =>
+          `#${Math.floor(Math.random() * 0xffffff).toString(16)}`;
+
+        const content = document.querySelector(".content");
+        let boxWidth = content.clientWidth;
+        let boxHeight = content.clientHeight;
+        window.onresize = function() {
+          boxWidth = content.clientWidth;
+          boxHeight = content.clientHeight;
+        };
+
+        function add() {
+          const star = document.createElement("div");
+          star.style.background = generateRandomHexColor();
+          star.style.top = Math.random() * (boxHeight - 20) + "px";
+          star.style.left = Math.random() * (boxWidth - 20) + "px";
+          star.classList.add("star");
+          content.appendChild(star);
+
+          const starArr = document.querySelectorAll(".star");
+
+          starArr.forEach((ele, index) => {
+            // ele.addEventListener("click",function(){
+            //   this.parentNode.removeChild(this);
+            // });
+
+            ele.onclick = function() {
+              ele.parentNode.removeChild(ele);
+            };
+          });
+        }
+
+        setInterval(() => {
+          add();
+        }, 1000);
+      };
+    </script>
+  </body>
+</html>

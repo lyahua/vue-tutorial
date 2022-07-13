@@ -26,6 +26,7 @@ import Prototype from "@/pages/es6-js/prototype.vue";
 import Test0428 from "@/pages/test-code/test0428.vue";
 import TestMock from "@/pages/test-code/test-mock.vue";
 import Test0510 from "@/pages/test-code/test0510.vue";
+import Test0515 from "@/pages/test-code/test0515.vue";
 
 const routes = [
   {
@@ -256,6 +257,14 @@ const routes = [
         },
         path: "/test0510",
         component: Test0510,
+      },
+      {
+        id: 1305,
+        meta: {
+          title: "test0515",
+        },
+        path: "/test0515",
+        component: Test0515,
       },
     ],
   },

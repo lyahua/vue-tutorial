@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   function forXunHuan(arr, callback) {
+      //     for (var i = 0; i < arr.length; i++) {
+      //       //封装的时候传入的第一个实参是值,第二个实参是索引
+      //       callback(arr[i], i);
+      //     }
+      //   }
+
+      //   forXunHuan([1, 2, 3, 4, 5, 56], function(val, i) {
+      //     console.log(val, i);
+      //   });
+
+      //   function myMap(arr, callback) {
+      //     let result = [];
+      //     for (let i = 0; i < arr.length; i++) {
+      //       result.push(callback(arr[i], i));
+      //     }
+      //     return result;
+      //   }
+      //   let res = myMap([1, 2, 3], function(ele, index) {
+      //     // console.log(ele,index)
+      //     return ele;
+      //   });
+      //   //   console.log("res", res);
+
+      Array.prototype.myMap = function(callback) {
+        let result = [];
+        for (let i = 0; i < this.length; i++) {
+          result.push(callback(this[i], i));
+        }
+        return result;
+      };
+
+      let res = [1, 2, 3].myMap((ele) => ele * 2);
+      //  console.log('res',res)
+
+      Array.prototype.myForEach = function(callback) {
+        for (var i = 0; i < this.length; i++) {
+          //封装的时候传入的第一个实参是值,第二个实参是索引
+          callback(this[i], i);
+        }
+      };
+      [1, 2, 3].myForEach((ele, index) => console.log(ele, index));
+
+      //   console.log('res',res2);
+      let res2 = undefined;
+      do {
+        res2 = prompt("这是标题", "提示");
+      } while (res2 != 1);
+      alert('hahaoah')
+    </script>
+  </body>
+</html>
