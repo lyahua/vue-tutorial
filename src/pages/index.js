@@ -27,6 +27,8 @@ import Test0428 from "@/pages/test-code/test0428.vue";
 import TestMock from "@/pages/test-code/test-mock.vue";
 import Test0510 from "@/pages/test-code/test0510.vue";
 import Test0515 from "@/pages/test-code/test0515.vue";
+import Test0719 from "@/pages/test-code/test0719.vue";
+import Test0726 from "@/pages/test-code/test0726.vue";
 
 const routes = [
   {
@@ -203,6 +205,22 @@ const routes = [
         path: "/0226",
         component: Test0226,
         name: "Test0226",
+      },
+      {
+        id: 1118,
+        meta: {
+          title: "0719",
+        },
+        path: "/0719",
+        component: Test0719,
+      },
+      {
+        id: 1119,
+        meta: {
+          title: "0726",
+        },
+        path: "/0726",
+        component: Test0726,
       },
     ],
   },

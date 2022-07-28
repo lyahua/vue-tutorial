@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 给下面这句话加上一个p标签 -->
+    牛客网是一个专注于程序员的学习和成长的专业平台。
+
+    <script>
+        const pInnerText=document.body.childNodes[0].textContent.trim();
+        document.body.removeChild(document.body.childNodes[0]);
+        const p=document.createElement('p');
+        p.innerHTML=pInnerText;
+        document.body.appendChild(p)
+    </script>
+</body>
+</html>

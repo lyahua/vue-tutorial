@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        min-height: 100vh;
+        align-items: center;
+        justify-content: center;
+        background: #f5f8ff;
+      }
+      .container {
+        max-width: 600px;
+        display: flex;
+      }
+      .container .tab{
+        background: greenyellow;
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.05);
+        padding: 0 20px 20px;
+        position: relative;
+      }
+      .container .tab input{
+        appearance: none;
+        /* display: none; */
+      }
+      .container .tab label{
+        display: flex;
+        align-items: center;
+      }
+      .container .tab label::after{
+        content: '+';
+        position: absolute;
+        right:20px;
+        font-size: 2em;
+        color: #eee;
+        transition: transform 0.5s;
+      }
+      .container .tab input:checked~label::after{
+        content:'+';
+        color: #000;
+        transform: rotate(135deg);
+      }
+      .container .tab label h2{
+        width:40px;
+        height: 40px;
+        line-height: 40px;
+        color: #fff;
+        text-align: center;
+        background: #333;
+        border-radius: 5px;
+      }
+
+      .container .tab .content{
+        max-height: 0;
+        overflow: hidden;
+        transition: all 1s;
+      }
+
+      .container .tab input:checked~.content{
+        max-height: 100vh;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="tab">
+        <input type="checkbox" id="acc1" />
+        <label class="title" for="acc1">
+          <h2>01</h2>
+          <h3>手风琴效果练习</h3>
+        </label>
+        <div class="content">
+          <p>
+            阿斯蒂芬苦啊右啊夼基进丫苦工时期哩基本上弎堪塔顶载打发打发弎苦苦莾
+            塔城地基蓐 蓐 苦工
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

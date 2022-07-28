@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* :root {
+        --color: blue;
+      } */
+      /* div {
+        --color: green;
+      } */
+      /* #alert {
+        --color: red;
+      } */
+      /* * {
+        color: var(--color);
+      } */
+      body {
+        --foo: #7f538e;
+        --bar: #f7efd2;
+      }
+      :root {
+        --main-color: #4d4e53;
+        --main-bg: rgb(255, 255, 255);
+        --logo-border-color: rebeccapurple;
+
+        --header-height: 68px;
+        --content-padding: 10px 20px;
+
+        --base-line-height: 1.428571429;
+        --transition-duration: 0.35s;
+        --external-link: "external link";
+        --margin-top: calc(2vh + 20px);
+
+        --primary-color: red;
+        --new-color: var(--primary-color);
+      }
+      a {
+        color: var(--foo);
+        text-decoration-color: var(--bar);
+      }
+      h2 {
+        color: var(--new-color);
+      }
+
+      /* 阴影写法 */
+      h2{
+        /* x 偏移量 | y 偏移量 | 阴影模糊半径 | 阴影扩散半径 | 阴影颜色 */
+        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+
+        /* 插页 (阴影向内) | x 偏移量 | y 偏移量 | 阴影颜色 */
+        box-shadow: inset 5em 1em gold;
+
+        /* 任意数量的阴影，以逗号分隔 */
+        box-shadow: 3px 3px red, -1em 0 0.4em olive;
+      }
+
+
+    
+      
+    </style>
+  </head>
+  <body>
+    <p>蓝色</p>
+    <div>绿色</div>
+    <div id="alert">红色</div>
+    <h1><a href="javascript:;">测试动态样式</a></h1>
+    <!-- var 函数还可用在变量的声明 -->
+    <h2>测试var函数变量声明</h2>
+    <!-- 变量值只能作属性值，不能用作属性名 -->
+    <h3>测试变量值作属性名</h3>
+  </body>
+</html>

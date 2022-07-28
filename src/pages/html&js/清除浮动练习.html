@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>清除浮动练习</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        .content{
+            width:400px;
+            border:1px solid #000;
+            /* overflow: hidden; */
+            
+        }
+        .content::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .box{
+            width:200px;
+            height:200px;
+            background: greenyellow;
+            float: left;
+            
+        }
+        /* .clear{
+            clear: both;
+        } */
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="box"></div>
+        <!-- <div class="clear"></div> -->
+    </div>
+    <p>基苦阿斯蒂芬</p>
+</body>
+</html>
