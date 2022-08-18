@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="input" type="text" />
+    <span id="span"></span>
+
+    <script type="text/javascript">
+      // 补全代码
+      // let ipt = document.querySelector("#input");
+      // let sp = document.querySelector("#span");
+      // ipt.onchange = function() {
+      //   console.log("e", ipt.value);
+      // };
+
+      /* 
+      [2,10)
+
+        [0,1)
+        [0,10)
+
+        [2,)
+        
+      */
+
+      /* 
+          [1,2,[3,5]]
+
+          [].1
+          [1].2
+          [1,2].[3,5]
+          [1,2].3
+        */
+      // function count(str) {
+      //   const obj = {};
+      //   str
+      //     .replace(/\s+/g, "")
+      //     .split("")
+      //     .reduce((pre, cur) => {
+      //       if (cur in obj) {
+      //        obj[cur]++;
+      //       } else {
+      //         obj[cur] = 1;
+      //       }
+      //     }, obj);
+      //   return obj;
+      // }
+
+      // // console.log(count('hello world'))
+      // let obj={a:1}
+      // console.log('obj',obj)
+
+      Array.prototype._filter = function(callback) {
+        let result = [];
+        // 为什么能直接用this，谁调用的this就指向谁，可以去复习下this指向
+        for (let i = 0; i < this.length; i++) {
+          if (callback(this[i], i)) {
+            result.push(this[i]);
+          }
+        }
+        return result;
+      };
+
+      Array.prototype._reduce = function(callback) {
+        let result = 0;
+
+        for (let i = 0; i < this.length; i++) {
+          result += callback(result, this[i]);
+        }
+
+        return result;
+      };
+
+      // console.log([1,2,3]._reduce((pre,cur)=>pre+cur))
+
+      const _searchStrIndexOf = (str, target) => {
+        // 补全代码
+        var re=new RegExp(`${target}`,'g');
+        console.log('re',re)
+        return str.match(re).length;
+      };
+      console.log(_searchStrIndexOf('abaca','a'))
+    </script>
+  </body>
+</html>

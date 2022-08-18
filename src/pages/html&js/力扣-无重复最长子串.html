@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+            str='abcbc'
+            temp=a
+            right=2;
+            max=2;
+
+            0 2
+
+            a
+            abac
+
+            temp=a; left=0;rigth=2;max=2;
+            temp=ab;left=1;right=2;max=
+            temp=b;left=1;right=3;max=
+            te
+
+        */
+      var lengthOfLongestSubstring = function(str) {
+        if (str.length <= 1) {
+          return str.length;
+        }
+        let left = 0;
+        let right = 1;
+        let max = 0;
+        let temp; // 空字符串
+        while (right < str.length) {
+          temp = str.slice(left, right);
+          if (temp.indexOf(str.charAt(right)) > -1) {
+            left++;
+            // continue;
+          } else {
+            right++;
+          }
+          if (right - left > max) {
+            max = right - left;
+          }
+        }
+        return max;
+      };
+
+      // console.log(lengthOfLongestSubstring('sttrr'))
+
+      var _lengthOfLongestSubstring = (str) => {
+        var s = new Set();
+        var index = 0;
+        var maxLength = 0;
+
+        for (let i = 0; i < str.length; i++) {
+          if (s.has(str.charAt(i))) {
+            while (s.has(str.charAt(i))) {
+              s.delete(str.charAt(index));
+              index++;
+            }
+            s.add(str.charAt(i));
+          }else{
+            s.add(str.charAt(i));
+            
+            maxLength=Math.max(maxLength,s.size)
+          }
+          
+        }
+        return maxLength
+      };
+      console.log(_lengthOfLongestSubstring('abcsc'))
+    </script>
+  </body>
+</html>

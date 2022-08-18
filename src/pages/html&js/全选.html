@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+        <style>
+            ul {
+                list-style: none;
+            }
+        </style>
+    <body>
+        <ul>
+            <li>全选<input type='checkbox' id='all'></li>
+            <li>Java<input type='checkbox' class='item'></li>
+            <li>javaScript<input type='checkbox' class='item'></li>
+            <li>C++<input type='checkbox' class='item'></li>
+            <li>python<input type='checkbox' class='item'></li>
+            <li>.net<input type='checkbox' class='item'></li>
+        </ul>
+
+        <script>
+            // 补全代码 齊
+            var all=document.querySelector('#all');
+            var items=document.querySelectorAll('.item');
+            var ul=document.querySelector('ul')
+
+            all.onchange=function(e){
+                // if(all.checked){
+                //     Array.from(items).forEach(ele=>ele.checked=true)
+                // }else{
+                //     Array.from(items).forEach(ele=>ele.checked=false)
+                // }
+                Array.from(items).forEach(ele=>{
+                    ele.checked=all.checked;
+                })
+            }
+
+            ul.onchange=function(e){
+                let event=e.target
+                Array.from(items).forEach(ele=>{
+                    if(ele.checked){
+                        ele.checked=true;
+                    }else{
+                        ele.checked=false;
+                    }
+                })
+
+                Array.from(items).forEach(ele=>{
+                    if(ele.checked){
+                        all.checked=true;
+                    }
+                })
+            }
+            
+        </script>
+    </body>
+</html>

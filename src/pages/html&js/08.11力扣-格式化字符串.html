@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>力扣-格式化字符串</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * @param {string} s
+       * @return {string}
+       */
+      var reformat = function(s) {
+        if(s.length===s.match(/\d/g).length){
+          return ''
+        }
+        if(s.length===s.match(/\w/g).length){
+          return ''
+        }
+        let str=s.match(/\w/g);
+        let num=s.match(/\d/g);
+        let result=[];
+        if(str.length>num.length){
+          str.forEach(ele=>{
+            
+          })
+        }
+      };
+    </script>
+  </body>
+</html>

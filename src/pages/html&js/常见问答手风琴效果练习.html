@@ -87,5 +87,38 @@
         </div>
       </div>
     </div>
+
+    <script>
+      /* 
+        1234 1 234
+        123456 123 456
+        1234567 1234 567
+                1 234
+        12345678 12345 678
+
+        1234567890
+                  1234567 890
+                  1234 567 890
+      */
+
+      var arr=[1,2,3,4,5]
+      // function addSum(arr){
+      //   var sum=0;
+      //   if(arr.length===1){
+      //     sum=arr[0]
+      //   }
+      //   else{
+      //     sum=arr[0]+addSum(arr.slice(1))
+      //     //第一次 sum=1+[2,3,4,5]
+      //     //第二次 sum=1+2+[3,4,5]
+      //   }
+      //   return sum
+      // }
+    console.log(addSum(arr))
+      
+    function addSum(arr){
+      return arr.reduce((pre,cur)=>pre+cur,0)
+    }
+    </script>
   </body>
 </html>

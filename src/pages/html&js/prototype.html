@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .box1 {
+      width: 600px;
+      height: 400px;
+    }
+    .box1 ul {
+      height: 40px;
+      width: 100%;
+      overflow: hidden;
+    }
+    .box1 ul li {
+      float: left;
+      list-style-type: none;
+      background: orange;
+      height: 100%;
+      width: 200px;
+      text-align: center;
+      font-size: 38px;
+    }
+    .box1 ul li.active {
+      background: red;
+    }
+    .box1 ol {
+      height: 360px;
+      width: 100%;
+    }
+    .box1 ol li {
+      float: left;
+      list-style-type: none;
+      background: greenyellow;
+      height: 100%;
+      width: 100%;
+      text-align: center;
+      font-size: 38px;
+      display: none;
+    }
+    .box1 ol li.active {
+      display: block;
+    }
+  </style>
+  <body>
+    <div class="box1">
+      <ul>
+        <li class="active">1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+      <ol>
+        <li class="active">1</li>
+        <li>2</li>
+        <li>3</li>
+      </ol>
+    </div>
+    <script>
+      /*
+        prototype(原型/原型对象):
+        每一个函数天生自带一个属性叫做prototype，他是一个对象
+        只要函数定义好了之后，这个prototype就出生了
+        构造函数也是函数，构造函数也有prototype
+
+        __proto__
+        每一个对象天生自带一个属性，实例对象也是对象，叫做__proto__，指向所属构造函数的prototype
+        */
+      //   function Person(name, age) {
+      //     this.name = name;
+      //     this.age = age;
+      //   }
+      //   Person.prototype.fn1 = function () {
+      //     console.log("hello world");
+      //   };
+
+      //   let p1 = new Person("jack", 20);
+
+      //   p1.fn1();
+      //   console.log("Person.prototype", Person.prototype);
+      //   console.log("p1.__proto__", p1.__proto__);
+      //   console.log(Person.prototype === p1.__proto__);
+
+      /*
+        1.抽象内容
+         属性btns
+         属性tabs
+         方法：能实现点击事件切换的方法
+      */
+
+      function Tabs(ele) {
+        // 拿到出现选项卡的范围
+        this.ele = document.querySelector(ele);
+        // 找到btns
+        this.btns = this.ele.querySelectorAll("ul>li");
+        // 找到tabs
+        this.tabs = this.ele.querySelectorAll("ol>li");
+
+        this.change();
+      }
+
+      Tabs.prototype.change = function () {
+        // 操作当前实例的btns和tabs
+        // this是当前实例，给this.btns添加点击事件
+        this.btns.forEach((item, index) => {
+          item.addEventListener("click", () => {
+            // this.btns和this.tabs里面每一个都 没有类名
+            this.btns.forEach((i, d) => {
+              i.className = "";
+              this.tabs[d].className = "";
+            });
+
+            // 给对应的添加类名
+            item.className = "active";
+            this.tabs[index].className = "active";
+          });
+        });
+      };
+
+      let tab1 = new Tabs(".box1");
+      //   tab1.change()
+      console.log("tba1", tab1);
+
+      const getJSON = function (url) {
+        const promise = new Promise(function (resolve, reject) {
+          const handler = function () {
+            if (this.readyState !== 4) {
+              return;
+            }
+            if (this.status === 200) {
+              resolve(this.response);
+            } else {
+              reject(new Error(this.statusText));
+            }
+          };
+          const client = new XMLHttpRequest();
+          client.open("GET", url);
+          client.onreadystatechange = handler;
+          client.responseType = "json";
+          client.setRequestHeader("Accept", "application/json");
+          client.send();
+        });
+
+        return promise;
+      };
+
+      getJSON("/posts.json").then(
+        function (json) {
+          console.log("Contents: " + json);
+        },
+        function (error) {
+          console.error("出错了", error);
+        }
+      );
+    </script>
+  </body>
+</html>
