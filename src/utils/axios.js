@@ -3,7 +3,7 @@ import axios from 'axios'
 // 生产环境
 // 测试环境
 // 开发环境
-const baseURL = 'http://localhost:8082'
+const baseURL = 'http://localhost:8081'
 
 // 创建一个axios实例
 const instance = axios.create({

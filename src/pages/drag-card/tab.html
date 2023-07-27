@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main {
+            height: 300px;
+            width: 400px;
+            border: 1px solid #eee;
+            box-sizing: border-box;
+        }
+
+        ul li {
+            float: left;
+            list-style-type: none;
+            line-height: 30px;
+            width: 50px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .firstNav {
+            height: 30px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        section {
+            width: 400px;
+            height: 270px;
+            box-sizing: border-box;
+            display: none;
+        }
+
+        .liactive {
+            background: orange;
+        }
+
+        section.tabactive {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main" id="tab">
+        <!-- 标签栏 -->
+        <nav class="firstNav">
+            <ul>
+                <li class="liactive"><span>标签一</span></li>
+                <li>标签二</li>
+                <li>标签三</li>
+            </ul>
+            <div>
+                <span>+</span>
+            </div>
+        </nav>
+        <!-- tab内容 -->
+        <div class="tabscon">
+            <section class="tabactive">内容一</section>
+            <section>内容二</section>
+            <section>内容三</section>
+        </div>
+    </div>
+    <script src="./tab.js"></script>
+</body>
+
+</html>

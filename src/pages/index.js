@@ -30,6 +30,10 @@ import Test0515 from "@/pages/test-code/test0515.vue";
 import Test0719 from "@/pages/test-code/test0719.vue";
 import Test0726 from "@/pages/test-code/test0726.vue";
 
+import Index from '@/pages/drag-card/Index.vue'
+
+import BigData from '@/pages/test-code/BigData.vue'
+
 const routes = [
   {
     id: 10,
@@ -286,6 +290,25 @@ const routes = [
       },
     ],
   },
+  {
+    id:14,
+    text:'拖拽卡片',
+    icon:'el-icon-location',
+    arr:[
+      {id: 1401,
+      meta: {
+        title: "拖拽卡片测试",
+      },
+      path: "/drag-card",
+      component: Index,},
+      {id: 1402,
+        meta: {
+          title: "数据量大渲染",
+        },
+        path: "/big-data",
+        component: BigData,}
+    ]
+  }
 ];
 
 export default routes;

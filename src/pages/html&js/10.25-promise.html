@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function ajax(url) {
+        //     return new Promise((resolve, reject) => {
+        //         var xhr = new XMLHttpRequest();
+        //         xhr.open('get', url, true);
+        //         xhr.send();
+        //         xhr.onreadystatechange = function () {
+        //             if (xhr.readyState == 4) {
+        //                 if (xhr.status >= 200 && xhr.status < 300) {
+        //                     resolve(xhr.responseText)
+        //                 } else {
+        //                     reject(xhr.responseText)
+        //                 }
+        //             }
+        //         }
+        //     })
+        // }
+        // ajax('./test.json').then(res=>{
+        //     console.log('res',res)
+        // })
+
+        // const fn1=function(){
+        //     return new Promise((resolve,reject)=>{
+        //         resolve('1111')
+        //     })
+        // }
+        // fn1().then(res=>{
+        //     console.log('res',res)
+        // })
+        // console.log(,'---')
+
+        const data = [
+            { id: 1, name: "节点1", parent_id: null },
+            { id: 2, name: "节点2", parent_id: 1 },
+            { id: 3, name: "节点3", parent_id: 1 },
+              { id: 4, name: "节点4", parent_id: 2 },
+              { id: 5, name: "节点5", parent_id: 2 },
+              { id: 6, name: "节点6", parent_id: 3 },
+              { id: 7, name: "节点7", parent_id: 3 }
+        ];
+
+        function toTree(data, parentId = null) {
+            let result = [];
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].parent_id === parentId) {
+                    let children = toTree(data, data[i].id);
+                    if (children && children.length > 0) {
+                        data[i].children = children;
+                    }
+                    result.push(data[i]);
+                }
+            }
+            return result;
+        }
+
+        // const treeData = toTree(data); //得到树形结构数据
+        // console.log(treeData)
+
+        // for(var i=1;i<=5;i++){
+        //     (function(j){
+        //         setTimeout(()=>{
+        //             console.log('i',j)
+        //         },1000*i)
+        //     })(i)
+        // }
+
+        // const a=()=>{
+        //     setTimeout(() => {
+        //         var a='123'
+        //         console.log('111',a)
+        //     }, 1000);
+        // }
+        // a()
+
+        // const b=()=>{
+        //     function c(){
+        //         return 2
+        //     }
+
+        //     return c()
+        // }
+        // console.log(b())
+
+        /* 
+            null 
+            1 1
+        */
+
+        var arr = [
+            { id: 1, name: 'Parent', parent_id: 0 },
+            { id: 2, name: 'Child1', parent_id: 1 },
+            { id: 3, name: 'Child2', parent_id: 1 },
+            { id: 4, name: 'Grandchild1', parent_id: 2 },
+            { id: 5, name: 'Grandchild2', parent_id: 2 }
+        ];
+
+        function arrayToTree(arr, parentId) {
+            var tree = [];
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i].parent_id === parentId) {
+                    var node = {
+                        id: arr[i].id,
+                        name: arr[i].name,
+                        children: arrayToTree(arr, arr[i].id)
+                    };
+
+                    tree.push(node);
+                }
+            }
+
+            return tree;
+        }
+
+        // var treeData = arrayToTree(arr, 0);
+
+
+        const nodes = [
+            { id: 3, name: '节点C', parentId: 1 },
+            { id: 6, name: '节点F', parentId: 3 },
+            { id: 0, name: 'root', parentId: null },
+            { id: 10, name: 'root', parentId: null },
+            { id: 1, name: '节点A', parentId: 0 },
+            { id: 8, name: '节点H', parentId: 4 },
+            { id: 4, name: '节点D', parentId: 1 },
+            { id: 2, name: '节点B', parentId: 0 },
+            { id: 5, name: '节点E', parentId: 2 },
+            { id: 7, name: '节点G', parentId: 2 },
+            { id: 9, name: '节点I', parentId: 5 }
+        ];
+        // function convert(data) {
+        //     let result=[];
+        //     let map = {};
+        //     data.forEach(item => {
+        //         map[item.id] = item;
+        //     });
+            
+        //     console.log(map,'000');
+        //     data.forEach(item => {
+        //         // item.pid 为null时 返回underfined
+        //         let parent = map[item.parentId];
+        //         console.log(parent,'---')
+        //         if (parent) {
+        //             (parent.children || (parent.children = [])).push(item);
+        //         }
+        //          else {
+        //             // 这里push的item是pid为null的数据
+        //             result .push(item);
+        //         }
+        //     });
+        //     return result;
+        // }
+
+        function convert(data){
+            let result=[];
+
+            let map={};
+            data.forEach(e=>{
+                map[e.id]=e;
+            })
+            data.forEach(e=>{
+                let parent=map[e.parentId]
+                if(parent){
+                    (parent.children||(parent.children=[])).push(e)
+                }else{
+                    result.push(e)
+                }
+            })
+
+            return result
+        }
+
+        // console.log(convert(nodes))
+
+        function fn1(callback){
+            callback('123')
+        }
+
+        fn1((res)=>{
+            console.log(res)
+        });
+    </script>
+</body>
+
+</html>
