@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+          观察都模式
+          */
+        function Subject() {
+            this.observers = [];
+        }
+
+        Subject.prototype.addObserver = function (observer) {
+            this.observers.push(observer);
+        };
+
+        Subject.prototype.removeObserver = function (observer) {
+            const index = this.observers.indexOf(observer);
+            if (index !== -1) {
+                this.observers.splice(index, 1);
+            }
+        };
+
+        Subject.prototype.notifyObservers = function (data) {
+            this.observers.forEach(function (observer) {
+                observer.update(data);
+            });
+        };
+
+        function Observer(name) {
+            this.name = name;
+        }
+
+        Observer.prototype.update = function (data) {
+            console.log(this.name + " received data: " + data);
+        };
+
+        // 创建主题和观察者
+        const subject = new Subject();
+        const observer1 = new Observer("Observer 1");
+        const observer2 = new Observer("Observer 2");
+
+        console.log(subject)
+        // 注册观察者
+        subject.addObserver(observer1);
+        subject.addObserver(observer2);
+
+        // 通知观察者
+        subject.notifyObservers("Hello, observers!");
+
+        // var createWindow = (function () {
+        //     var div;
+        //     return function () {
+        //         if (!div) {
+        //             div = document.createElement("div");
+        //             div.innerHTML = "我是弹窗内容";
+        //             div.style.display = 'none';
+        //             document.body.appendChild(div);
+        //         }
+        //         return div;
+        //     }
+        // })();
+        // document.getElementById("Id").onclick = function () {
+        //     // 点击后先创建一个div元素
+        //     var win = createWindow();
+        //     win.style.display = "block";
+        // }
+
+    </script>
+</body>
+
+</html>

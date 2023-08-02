@@ -1,16 +1,18 @@
 // const path = require("path");
 // const _ = require('lodash');
 const fs = require('fs');
+const path=require('path')
 
 class TestJson {
   constructor() {
     this.users = this.loadUsers()
     console.log(`用户数量：${this.users.length}`)
+    console.log(`用户数量：${JSON.stringify(JSON.stringify(this.users)) }`)
   }
 
   loadUsers() {
     try {
-      let content = fs.readFileSync('../docs/user.json', 'utf8')
+      let content = fs.readFileSync(path.resolve(__dirname,'../docs/user.json'), 'utf8')
       return JSON.parse(content)
     } catch (err) {
       console.error(err)
@@ -74,4 +76,5 @@ class TestJson {
   // }
 }
 
+new TestJson ();
 module.exports = TestJson

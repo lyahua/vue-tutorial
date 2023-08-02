@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .container1 {
+        width: 300px;
+        height: 200px;
+      }
+      .container1 ul {
+        height: 50px;
+      }
+      .container1 ul li {
+        float: left;
+        width: 60px;
+        height: 50px;
+        list-style-type: none;
+      }
+
+      .container1 ol {
+        height: 150px;
+        width: 300px;
+      }
+
+      .container1 ol li {
+        height: 150px;
+        width: 300px;
+        display: none;
+      }
+
+      .container1 ul .active {
+        background: orange;
+      }
+      .container1 ol .active {
+        display: block;
+        background: orange;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container1">
+      <ul>
+        <li class="active">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+      </ul>
+
+      <ol>
+        <li class="active">11111</li>
+        <li>22222</li>
+        <li>33333</li>
+        <li>44444</li>
+        <li>55555</li>
+      </ol>
+    </div>
+
+    <script>
+      function Tabs(className) {
+        this.container = document.querySelector(className);
+        this.headerItems = this.container.querySelectorAll("ul li");
+        this.contentItems = this.container.querySelectorAll("ol li");
+
+        this.change();
+      }
+
+      Tabs.prototype.change = function() {
+
+        for (let i = 0; i < this.headerItems.length; i++) {
+          this.headerItems[i].onclick = () => {
+            for (let n = 0; n < this.headerItems.length; n++) {
+              this.headerItems[n].classList.remove("active");
+              this.contentItems[n].classList.remove("active");
+            }
+
+            this.headerItems[i].classList.add("active");
+            this.contentItems[i].classList.add("active");
+          };
+        }
+
+      };
+
+      new Tabs(".container1");
+    </script>
+  </body>
+</html>

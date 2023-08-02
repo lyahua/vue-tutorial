@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Employee(name, age) {
+            this.name = name;
+            this.age = age;
+
+            // this.say = function() {
+            //   console.log(this.name + ":" + this.age);
+            // };
+        }
+        Employee.prototype.say = function () {
+            console.log(this.name + ":" + this.age);
+        };
+
+        const employees1 = new Employee("tieChui", 16);
+        const employees2 = new Employee("tieChui2", 18);
+        employees1.say();
+        console.log(employees1,employees2);
+    </script>
+</body>
+
+</html>

@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "start": "npm run serve"
+    "ttt":"node ./src/utils/1.js",
+    "start": "(npm run serve)&(npm run ttt)"
   },
   "dependencies": {
     "ant-design-vue": "^1.7.6",
