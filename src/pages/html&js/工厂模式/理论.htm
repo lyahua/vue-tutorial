@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+            由一个工厂对象决定创建某一种 产品对象类 的实例,主要创建同一类对象
+        */
+        // 例子：不同角色登录网站看到不同页面
+
+
+
+        function UserFactory(role) {
+
+            function User(role, pages) {
+                this.role = role;
+                this.pages = pages;
+            }
+            switch (role) {
+                case 'superAdmin':
+                    return new User('superAdmin', ['home', 'user-manage', 'right-manage', 'news-manage']);
+                    break;
+                case 'admin':
+                    return new User('admin', ['home', 'user-manage', 'right-manage']);
+                    break;
+                case 'editor':
+                    return new User('editor', ['home', 'edit-manage']);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        var rs = new UserFactory('editor')
+    </script>
+</body>
+
+</html>

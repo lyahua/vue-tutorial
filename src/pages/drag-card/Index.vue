@@ -28,12 +28,20 @@
         </div>
 
 
-
+        <Test>
+            <template #header>
+                121212212
+            </template>
+        </Test>
     </div>
 </template>
 
 <script>
+import Test from './components/Test.vue'
 export default {
+    components:{
+        Test
+    },
     data() {
         return {
             listData: [

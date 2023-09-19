@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        不生产水，只是大自然的搬运工
+        */
+
+        class User{
+            constructor(name,role,pages){
+                this.name=name;
+                this.role=role;
+                this.pages=pages;
+            }
+
+            welcome(){
+                console.log('欢迎'+this.name)
+            }
+
+            dataShow(){
+                throw new Error("抽象方法要被重写");
+            }
+        }
+
+        class SuperAdmin extends User{
+            constructor(name){
+                super(name,"superadmin",['home','user-manage','right-manage','news-manage'])
+            }
+
+            dataShow(){
+                console.log('superadmin-datashow')
+            }
+
+            addRight(){
+
+            }
+
+            addUser(){
+                 
+            }
+
+        }
+
+        class Admin extends User{
+            constructor(name){
+                super(name,'admin',['home','user-manage']);
+                console.log(this)
+            }
+
+            dataShow(){
+                console.log('admin-datashow')
+            }
+
+            addUser(){
+
+            }
+        }
+
+        class Editor extends User{
+            constructor(name){
+                super(name,'editor',['home','news-manage']);
+            }
+
+            dataShow(){
+                console.log('editor-datashow')
+            }
+        }
+
+        function getAdstraction(role){
+            switch(role){
+                case 'superadmin':
+                    return SuperAdmin;
+                    break;
+                case 'admin':
+                    return Admin;
+                    break;
+                case 'editor':
+                    return Editor;
+                    break;
+                default:
+                    throw new Error("未知角色");
+            }
+        }
+
+        // console.log(getAdstraction('admin'))
+
+        var RAdmin=getAdstraction('admin');
+        var rAdmin = new RAdmin('kwerwin');
+        console.log(rAdmin)
+    </script>
+</body>
+</html>

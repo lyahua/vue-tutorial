@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Function.prototype.before=function(beforFn){
+            var _this=this;
+            return function(){
+                beforFn.apply(this.arguments)
+                return _this.apply(this.arguments)
+            }
+        }
+    </script>
+</body>
+</html>

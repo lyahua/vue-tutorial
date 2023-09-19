@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 50px;
+            height: 50px;
+            background: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <input id="ipt" />
+    <h2></h2>
+    <div class="box"></div>
+    <button id="btn">添加动画</button>
+    <script>
+        var input = document.querySelector('#ipt');
+        var h = document.querySelector('h2')
+        input.onkeydown = function (e) {
+            // console.log('e',e.target.value)
+            setTimeout(() => {
+                h.innerText = e.target.value
+            }, 0);
+        }
+
+        var btn = document.querySelector('#btn');
+        var box = document.querySelector('.box')
+        btn.onclick = function () {
+            console.log('000')
+            box.style.transform = "translateX(200px)";
+            box.style.transition = "none";
+            
+            box.offsetWidth
+
+            // setTimeout(() => {
+                box.style.transform = "translateX(0)";
+                box.style.transition = "all 1s ease-in";
+            // }, 0);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        /*
+        简单工厂的优点在于，你只需要一个正确的参数，就可以获取到你所需要的对象，而无需知道其创建的具体细节。
+        但是在函数内包含了所有对象的创建逻辑和判断逻辑的代码，每增加新的构造函数还需要修改判断逻辑代码。
+        当我们的对象不是上面的3个而是10个或更多时，这个函数会成为一个庞大的超级函数，便得难以维护。
+        所以，简单工厂只能作用于创建的对象数量较少，对象的创建逻辑不复杂时使用。
+        */
+        class User {
+            constructor(role, pages) {
+                this.role = role;
+                this.pages = pages;
+            }
+
+            static userFactory(role) {
+                switch (role) {
+                    case 'superAdmin':
+                        return new User('superAdmin', ['home', 'user-manage', 'right-manage', 'news-manage']);
+                        break;
+                    case 'admin':
+                        return new User('admin', ['home', 'user-manage', 'right-manage']);
+                        break;
+                    case 'editor':
+                        return new User('editor', ['home', 'edit-manage']);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        var rs = User.userFactory('admin')
+    </script>
+</body>
+
+</html>

@@ -34,6 +34,9 @@ import Index from '@/pages/drag-card/Index.vue'
 
 import BigData from '@/pages/test-code/BigData.vue'
 
+import VxeTable from '@/pages/test-code/VxeTable.vue'
+const VueS001=()=>import("@/pages/vue-study/S001/index.vue")
+
 const routes = [
   {
     id: 10,
@@ -226,6 +229,14 @@ const routes = [
         path: "/0726",
         component: Test0726,
       },
+      {
+        id: 1120,
+        meta: {
+          title: "VxeTable",
+        },
+        path: "/vxe-table",
+        component: VxeTable,
+      },
     ],
   },
   {
@@ -307,6 +318,21 @@ const routes = [
         },
         path: "/big-data",
         component: BigData,}
+    ]
+  },
+  {
+    id:15,
+    text:'新气象',
+    icon:'el-icon-location',
+    arr:[
+      {
+        id:1501,
+        meta:{
+          title:'拖动'
+        },
+        path:'/s001',
+        component:VueS001
+      }
     ]
   }
 ];

@@ -25,6 +25,11 @@ import store from "./store";
 // Mock
 import "@/mock/index.js";
 
+import VXETable from 'vxe-table'
+import 'vxe-table/lib/style.css'
+
+Vue.use(VXETable)
+
 new Vue({
   render: (h) => h(App),
   router,
