@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+
   <body>
     <script>
       function ajax(url) {
@@ -17,34 +18,84 @@
             if (xhr.readyState == 4) {
               if (xhr.status >= 200 && xhr.status < 300) {
                 // 成功
-                resolve(JSON.parse(xhr.responseText));
+                resolve(xhr);
               } else {
                 // 失败
-                reject(xhr.responseText);
+                reject(xhr);
               }
             }
           };
         });
       }
 
+      // Promise 回调地狱写法:不推荐
       var name = "1111";
-      ajax(`http://localhost:3000/news?author=${name}`).then((res) => {
-        // console.log("res", res[0].id);
+      // ajax(`http://localhost:3000/news?author=${name}`).then((res) => {
+      //   console.log("res", res);
 
-        ajax(`http://localhost:3000/comments?newId=${res[0].id}`).then(
-          (res2) => {
-            console.log("res2", res2);
-          }
-        );
-      });
+      //   let rs = JSON.parse(res.responseText);
+      //   ajax(`http://localhost:3000/comments?newId=${rs[0].id}`).then(
+      //     (res2) => {
+      //       console.log("res2", res2);
+      //     }
+      //   );
+      // });
 
+      // Promise 链式调用:推荐
       ajax(`http://localhost:3000/news?author=${name}`)
         .then((res) => {
-          return ajax(`http://localhost:3000/comments?newId=${res[0].id}`);
+          let rs = JSON.parse(res.responseText);
+          return ajax(`http://localhost:3000/comments?newId=${rs[0].id}`);
         })
         .then((res) => {
           console.log("res3", res);
+          return new Promise((resolve, reject) => resolve(res));
+        })
+        .then((res) => {
+          console.log("res4", res);
+        })
+        .catch((err) => {
+          console.log("err", err);
         });
+
+      // const preloadImage = function(path) {
+      //   return new Promise(function(resolve, reject) {
+      //     const image = new Image();
+      //     image.onload = resolve;
+      //     image.onerror = reject;
+      //     image.src = path;
+      //     console.log("image", image.onload);
+      //   });
+      // };
+      // preloadImage("./传对象.png")
+      //   .then((res) => {
+      //     console.log("res", res);
+      //   })
+      //   .catch((err) => {
+      //     console.log("err", err);
+      //   });
+
+      function loadImageAsync(url) {
+        return new Promise(function(resolve, reject) {
+          const image = new Image(400,500);
+
+          image.onload = function() {
+            resolve(image);
+          };
+
+          image.onerror = function() {
+            reject(new Error("Could not load image at " + url));
+          };
+
+          image.src = url;
+        });
+      }
+      loadImageAsync('./传对象.png').then(res=>{
+        console.log("res",res)
+        document.body.appendChild(res)
+      }).catch(err=>{
+        console.log("err",err)
+      })
     </script>
   </body>
 </html>

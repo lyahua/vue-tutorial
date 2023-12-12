@@ -1,10 +1,25 @@
 <template>
     <div>
+        <table border width="200">
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+        </table>
         <ul @dragstart="dragstart" @dragenter="dragenter($event)" @dragover="dragover">
             <li v-for="(item) in data" :key="item.id" v-text="item.title" :draggable="true">
             </li>
         </ul>
         <h2>标题</h2>
+
+        <table border>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+        </table>
     </div>
 </template>
 
