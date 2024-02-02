@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+    <script>
+        /*
+         垃圾回收机制: 1.标记删除法 缺点:两个对象间的相互引用无法回收
+                      2.作用域查找
+
+         闭包: 函数有返回值,且返回值为复杂类型,且返回值被外部变量所引用
+        */
+        var lis = document.querySelectorAll('li');
+        console.log('list', lis);
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].onclick = (function (index) {
+                return function () {
+                    console.log('i', index)
+                }
+            })(i);
+        }
+    </script>
+</body>
+
+</html>

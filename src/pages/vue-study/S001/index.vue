@@ -20,6 +20,18 @@
                 <td>3</td>
             </tr>
         </table>
+
+        <hr/>
+
+        <form @submit="submit">
+            <label>name</label><input v-model="inputV" />
+            <label>age</label><input v-model="inputV2" />
+            <button type="submit">提交</button>
+        </form>
+        <hr/>
+        <div class="bbbtest">1111</div>
+        <hr/>
+        <div class="page"></div>
     </div>
 </template>
 
@@ -53,7 +65,9 @@ export default {
                     title: '6',
                 }
             ],
-            drag: ''
+            drag: '',
+            inputV:'',
+            inputV2:''
         }
     },
     methods: {
@@ -130,6 +144,10 @@ export default {
                 index++;
             }
             return index;
+        },
+        submit(e){
+            e.preventDefault()
+            console.log('e',e)
         }
 
     },
@@ -144,11 +162,13 @@ export default {
 }
 </script>
 
+<style  src="./index.css"></style>
 <style lang="css" scoped>
 * {
     padding: 0;
     margin: 0;
 }
+
 
 ul {
     display: flex;

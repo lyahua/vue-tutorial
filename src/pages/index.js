@@ -36,6 +36,7 @@ import BigData from '@/pages/test-code/BigData.vue'
 
 import VxeTable from '@/pages/test-code/VxeTable.vue'
 const VueS001=()=>import("@/pages/vue-study/S001/index.vue")
+const VueS002=() => import('@/pages/vue-study/S002/index.vue')
 
 const routes = [
   {
@@ -332,6 +333,14 @@ const routes = [
         },
         path:'/s001',
         component:VueS001
+      },
+      {
+        id:1502,
+        meta:{
+          title:'组件封装'
+        },
+        path:'/s002',
+        component:VueS002
       }
     ]
   }

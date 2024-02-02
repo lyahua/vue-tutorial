@@ -1,0 +1,10 @@
+:root{
+    --color1:skyblue;
+}
+.bbbtest{
+    /* background: red; */
+    width:200px;
+    height: 200px;
+    /* color:var(--color1) */
+    background: var(--color1);
+}

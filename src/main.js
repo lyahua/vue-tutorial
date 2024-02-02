@@ -6,6 +6,8 @@ Vue.config.productionTip = false;
 import router from "./router/index";
 // console.log("roter",router)
 
+import './utils/styles/common.css'
+
 // 组件
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
