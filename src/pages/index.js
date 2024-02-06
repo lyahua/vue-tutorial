@@ -36,7 +36,9 @@ import BigData from '@/pages/test-code/BigData.vue'
 
 import VxeTable from '@/pages/test-code/VxeTable.vue'
 const VueS001=()=>import("@/pages/vue-study/S001/index.vue")
-const VueS002=() => import('@/pages/vue-study/S002/index.vue')
+const VueS002=() => import('@/pages/vue-study/S002/index.vue');
+const VueS003 = ()=>import('@/pages/vue-study/S003/index.vue')
+const VueS004 = ()=>import('@/pages/vue-study/S004/index.vue')
 
 const routes = [
   {
@@ -341,6 +343,22 @@ const routes = [
         },
         path:'/s002',
         component:VueS002
+      },
+      {
+        id:1503,
+        meta:{
+          title:'less样式学习'
+        },
+        path:'/s003',
+        component:VueS003
+      },
+      {
+        id:1504,
+        meta:{
+          title:'sass样式学习'
+        },
+        path:'/s004',
+        component:VueS004
       }
     ]
   }
