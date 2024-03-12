@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [1,1,2,3,5,6,1,2,3,5,6];
+
+        // let arr = [{ a: 1, b: 2 }, { a: 11, b: 12 }, { a: 1, b: 2 }]
+        let newArr = [...arr];
+
+        for (let i = 0; i < newArr.length; i++) {
+
+            for (let j = i + 1; j < newArr.length; j++) {
+                if (equales(newArr[i], newArr[j])) {
+                    newArr.splice(j, 1);
+                    j--
+                }
+            }
+        }
+
+        function isObject(obj) {
+            if (obj != null && typeof obj === "object") {
+                return true;
+            }
+            return false
+        }
+
+        function equales(obj1, obj2) {
+            if (isObject(obj1) && isObject(obj2)) {
+                const keys1 = Object.keys(obj1);
+                const keys2 = Object.keys(obj2);
+                if (keys1.length != keys2.length) {
+                    return false
+                }
+                for (let i = 0; i < keys1.length; i++) {
+                    if (!keys2.includes(keys1[i])) {
+                        return false
+                    }
+                    if (obj1[keys1[i]] != obj2[keys1[i]]) {
+                        return false
+                    }
+                }
+
+                return true;
+
+            } else {
+                return obj1 === obj2
+            }
+        }
+
+        console.log(newArr)
+
+        console.log(equales(1, 1))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function TPromise(excute){
+            const resolve = function(){
+                console.log('resolve')
+            }
+            const reject = function(){
+                console.log('reject')
+            }
+            excute(resolve,reject);
+        }
+        TPromise.prototype.then = ()=>{
+
+        }
+
+        var p = new TPromise((resolve,reject)=>{
+            resolve()
+        })
+        p.then(r=>{
+            console.log('r',r)
+        })
+    </script>
+</body>
+</html>
