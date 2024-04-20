@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Draggable Element Example</title>
+    <style>
+      #draggable {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-color: #4caf50;
+        color: white;
+        text-align: center;
+        line-height: 100px;
+        cursor: move;
+        z-index: 10;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="draggable">拖拽我</div>
+
+    <script>
+      // 获取可拖拽的元素
+      var draggable = document.getElementById("draggable");
+
+      // 初始化变量来存储鼠标和元素的初始位置
+      var isDragging = false; // 标识是否正在拖拽
+      var startX, startY, currentX, currentY, elementX, elementY;
+
+      // 鼠标按下时触发的事件处理函数
+      function onMouseDown(event) {
+        // 记录初始位置
+        startX = event.clientX;
+        startY = event.clientY;
+        elementX = draggable.offsetLeft;
+        elementY = draggable.offsetTop;
+
+        // 标记开始拖拽
+        isDragging = true;
+
+        // 监听鼠标移动事件
+        document.addEventListener("mousemove", onMouseMove);
+      }
+
+      // 鼠标移动时触发的事件处理函数
+      function onMouseMove(event) {
+        if (!isDragging) return;
+
+        // 计算移动后的位置
+        currentX = elementX + event.clientX - startX;
+        currentY = elementY + event.clientY - startY;
+
+        // 更新元素位置
+        draggable.style.left = currentX + "px";
+        draggable.style.top = currentY + "px";
+      }
+
+      // 鼠标释放时触发的事件处理函数
+      function onMouseUp(event) {
+        // 标记结束拖拽
+        isDragging = false;
+
+        // 移除鼠标移动事件监听器
+        document.removeEventListener("mousemove", onMouseMove);
+      }
+
+      // 给可拖拽元素添加鼠标按下事件监听器
+      draggable.addEventListener("mousedown", onMouseDown);
+
+      // 给文档添加鼠标释放事件监听器，以便在元素外部释放鼠标时也能结束拖拽
+      document.addEventListener("mouseup", onMouseUp);
+    </script>
+  </body>
+</html>

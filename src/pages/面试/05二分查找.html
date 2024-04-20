@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [1,2,3,4,5,6]
+        function queryNum(arr,target){
+            let minIndex = 0;
+            let maxIndex = arr.length-1;
+
+            while(minIndex <= maxIndex){
+                let midlleIndex = Math.floor((minIndex + maxIndex)/2);
+
+                if(target < arr[midlleIndex]){
+                    maxIndex = midlleIndex-1;
+                }else if(target > arr[midlleIndex]){
+                    minIndex = midlleIndex+1
+                }else{
+                    return midlleIndex
+                }
+            }
+
+            console.log(minIndex,maxIndex)
+        }
+
+        // min 0,max 5,middle 3=>4
+        // min 3 max 5 middle 
+
+        console.log(queryNum(arr,8))
+    </script>
+</body>
+</html>

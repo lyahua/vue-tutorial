@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        #box1 {
+          width: 100px;
+          height: 100px;
+          background-color: rebeccapurple;
+          position: absolute;
+        }
+      </style>
+  </head>
+
+  <body>
+    <div id="box1"></div>
+
+    
+    <script>
+      window.onload = function() {
+        var box1 = document.getElementById("box1");
+        drag(box1);
+      };
+
+      /**
+       * 专门用来拖拽的方法，参数为拖拽元素的ID
+       */
+      function drag(obj) {
+        //当鼠标在被拖拽元素上按下，开始拖拽
+        obj.onmousedown = function(event) {
+          //设置obj捕获所有的鼠标按下事件，而不仅仅是在元素内部区域
+          // obj.setCapture && obj.setCapture();
+          //解决兼容性问题,实现IE8的兼容
+          event = event || window.event;
+          //鼠标在元素中的偏移量等于 鼠标的clientX - 元素的offsetLeft
+          var ol = event.clientX - obj.offsetLeft;
+          var ot = event.clientY - obj.offsetTop;
+
+          //为document绑定一个onmousemove事件
+          document.onmousemove = function(event) {
+            event = event || window.event;
+            //当鼠标移动时，被拖拽元素跟随鼠标移动
+            //获取鼠标的坐标
+            var left = event.clientX - ol;
+            var top = event.clientY - ot;
+
+            //修改元素的位置 修改元素的位置只能通过 元素.style.属性 = "属性值";
+            obj.style.left = left + "px";
+            obj.style.top = top + "px";
+          };
+          //为document绑定一个鼠标松开事件onmouseup
+          document.onmouseup = function() {
+            //当鼠标松开时，被拖拽元素固定在当前位置
+            //当鼠标松开时，取消onmousemove事件
+            console.log('00--0--0')
+            document.onmousemove = null;
+            //当鼠标松开时，onmouseup事件，要不每次一松开鼠标都触发此事件
+            document.onmouseup = null;
+            //鼠标松开，取消事件的捕获
+            //obj.releaseCapture && obj.releaseCapture();
+          };
+          /**
+           * 当我们拖拽一个网页中的内容时，浏览器默认会使用搜索引擎去搜索拖拽的文本内容
+           * 可以通过return false取消这种行为
+           *
+           * 注：IE8 使用return false无效
+           */
+        //   return false;
+        };
+      }
+    </script>
+  </body>
+</html>

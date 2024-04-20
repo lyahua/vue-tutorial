@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 20px;
+            background: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <span title="123123">123123</span>
+    <script>
+        function generate(numRows) {
+            // debugger
+            let result = []
+            let arr = []
+            for (let i = 1; i <= numRows; i++) {
+
+
+                if (i === 1) {
+                    arr = [1]
+                    result.push(arr)
+                } else if (i === 2) {
+                    arr = [1, 1]
+                    result.push(arr)
+                } else {
+                    let arr2 = []
+                    for (let j = 0, k = j + 1; j < arr.length && k < arr.length; j++, k++) {
+                        // console.log(arr[j] + arr[k])
+                        arr2.push(arr[j] + arr[k])
+                    }
+                    arr = [1, ...arr2, 1]
+                    result.push(arr)
+                }
+            }
+            return result;
+        };
+
+        console.log(generate(20))
+
+        //   for(let i=0;i<generate(20).length;i++){
+        //     let div = document.createElement('div')
+        //     div.innerText = generate(20)[i].join(' ')
+        //     div.style.textAlign = 'center'
+        //     document.body.appendChild(div)
+        //   }
+
+        let arr = [1, 2, 2, 3, 3, 1, 5]
+        let num = 0;
+        for (let i = 0; i < arr.length; i++) {
+            // console.log(num^arr[i])
+            num = num ^ arr[i];
+            console.log(num)
+
+        }
+
+        var color = 'green'
+        var test4399 = {
+            color: 'blue',
+            getColor: function () {
+                var color = 'red';
+                alert(this.color)
+            }
+        }
+        //var getColor= test4399.getColor
+        //getColor();
+        // test4399.getColor();
+
+        function fn1() {
+            for (let i = 0; i < 10; i++) {
+                console.log('11111')
+
+                setTimeout(() => {
+                    console.log('22222')
+                }, 5);
+            }
+        }
+
+        // fn1();
+
+        function isPalindrome(s) {
+            let r = s.replace(/[^a-z,A-Z]/g, '').toLocaleLowerCase();
+            let r1 = '';
+            let r2 = ''
+            let left = 0;
+            let right = r.length - 1;
+            while (left < r.length) {
+                r1 += r[left]
+                left++
+                r2 += r[right]
+                right--
+                console.log(r1, r2)
+            }
+            return r1 === r2
+        };
+
+        //    console.log(isPalindrome('aba')) 
+
+        function longestCommonPrefix(strs) {
+           var nums = strs;
+
+           
+            
+
+        };
+
+        let strs = ["flower","flower","flower"]
+
+        longestCommonPrefix(strs)
+    </script>
+</body>
+
+</html>
