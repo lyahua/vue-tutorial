@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var obj = {
+            name: '张三',
+            age: 18
+        }
+
+        Object.entries(obj).forEach(([key, value]) =>{
+            // console.log('key', key, value)
+            Object.defineProperty(obj, key,{
+                get(){
+                    console.log('正在获取值'+ key +':'+ value)
+                    return value
+                },
+                set(val){
+                    console.log('value', val)
+                    value = val;
+                    console.log('正在设置值'+key ,'新值为'+val)
+                }
+            })
+        })
+
+        let obj2 = {
+            name:'1',
+            sayHello(){
+                setTimeout(function(){
+                    console.log(this.name)
+                },1000)
+            }
+        }
+        obj2.sayHello()
+
+        class User{
+
+        }
+    </script>
+</body>
+</html>

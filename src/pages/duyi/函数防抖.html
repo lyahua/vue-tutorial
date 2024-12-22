@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input />
+    <script>
+        var inp = document.querySelector('input')
+
+        var newHandler = debounce(
+            function (e) {
+                console.log('输入事件' + this.value, e)
+            }, 1000
+        )
+
+        inp.addEventListener('input', newHandler)
+
+        
+
+        /*
+        防抖函数,将函数作为参数传入函数，函数会返回一个新函数
+        */
+        function debounce(callback, duration) {
+
+            // console.log ('this debounce', this)
+            var timeId = null;
+            return function () {
+                console.log('callback this', this, arguments)
+                var _this = this
+                var arg = Array.prototype.slice.call(arguments,0)
+                if (timeId) clearTimeout(timeId)
+                timeId = setTimeout(() => {
+                    callback.apply(_this, arg)
+                }, duration);
+            }
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

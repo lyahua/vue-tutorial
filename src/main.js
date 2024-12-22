@@ -30,6 +30,10 @@ import "@/mock/index.js";
 import VXETable from 'vxe-table'
 import 'vxe-table/lib/style.css'
 
+import BaseSelect from '@/components/y-ui-v2/base-components/b-select/index.vue'
+
+Vue.component('base-select',BaseSelect)
+
 Vue.use(VXETable)
 
 new Vue({

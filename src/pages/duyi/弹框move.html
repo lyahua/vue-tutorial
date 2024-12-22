@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0
+        }
+        .dialog{
+            width:200px;
+            height:150px;
+            background: skyblue;
+            position: absolute;
+            left: 100px;
+            top: 100px
+        }
+        .title {
+            height:20px;
+            background: #ccc;
+            width:100%;
+            cursor: move;
+        }
+        .content{
+            height:180px;
+            width:100%;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="dialog">
+        <div class="title"></div>
+        <div class="content"></div>
+    </div>
+    <script>
+        var title = document.querySelector('.title')
+        var dialog = document.querySelector('.dialog')
+
+        title.onmousedown = function(e){
+            console.log('鼠标按下',e)
+            var sx = e.clientX
+            var sy = e.clientY
+
+            var rect = dialog.getBoundingClientRect()
+            console.log('rect', rect)
+            var origonx = rect.left
+            var orfiony = rect.top
+
+            document.onmousemove = function (e){
+                console.log('鼠标移动')
+
+                var mx = e.clientX - sx + origonx;
+                var my = e.clientY - sy + orfiony;
+
+                dialog.style.left = mx + 'px';
+                dialog.style.top = my + 'px'
+            }
+
+            document.onmouseup = function () {
+                console.log('鼠标抬起')
+                document.onmousemove = null;
+                document.onmouseup = null
+            }
+        }
+    </script>
+</body>
+</html>

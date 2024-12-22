@@ -39,6 +39,8 @@ const VueS001=()=>import("@/pages/vue-study/S001/index.vue")
 const VueS002=() => import('@/pages/vue-study/S002/index.vue');
 const VueS003 = ()=>import('@/pages/vue-study/S003/index.vue')
 const VueS004 = ()=>import('@/pages/vue-study/S004/index.vue')
+const VueS005 = ()=>import('@/pages/vue-study/S005/index.vue')
+const VueS006 = ()=>import('@/pages/vue-study/S006/index.vue')
 
 const routes = [
   {
@@ -359,6 +361,22 @@ const routes = [
         },
         path:'/s004',
         component:VueS004
+      },
+      {
+        id:1505,
+        meta:{
+          title:'分片上传'
+        },
+        path:'/s005',
+        component:VueS005
+      },
+      {
+        id:1506,
+        meta:{
+          title:'组件测试'
+        },
+        path:'/s006',
+        component:VueS006
       }
     ]
   }

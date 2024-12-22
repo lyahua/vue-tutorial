@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        .box {
+            width: 50px;
+            height: 50px;
+            position: fixed;
+            background: red;
+            border-radius: 50%;
+            left: 100px;
+            top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box"></div>
+    <script>
+        function getRandom(min, max) {
+            return Math.floor((Math.random() * (max - min)) + min)
+        }
+
+        let x = 5
+        let y = 2
+
+        var box = document.querySelector('.box')
+
+        var maxLeft = document.documentElement.clientWidth - box.offsetWidth
+        var maxTop = document.documentElement.clientHeight - box.offsetHeight
+
+        console.log('maxLeft', maxLeft, maxTop)
+        setInterval(() => {
+            var rect = box.getBoundingClientRect()
+            console.log('rect', rect)
+
+            var left = rect.left + x
+            var top = rect.top + y
+            if (left > maxLeft){
+                // left = rect.left - x
+                x = -x
+                box.style.background = `rgb(${getRandom(0,256)},${getRandom(0,256)},${getRandom(0,256)})`
+            }
+            if (top> maxTop) {
+                // top = rect.top - y
+                y = -y
+                box.style.background = `rgb(${getRandom(0,256)},${getRandom(0,256)},${getRandom(0,256)})`
+            }
+            if (top < 0) {
+                y = -y
+                box.style.background = `rgb(${getRandom(0,256)},${getRandom(0,256)},${getRandom(0,256)})`
+            }
+            if (left <0) {
+                x = -x
+                box.style.background = `rgb(${getRandom(0,256)},${getRandom(0,256)},${getRandom(0,256)})`
+            }
+
+            box.style.left = (left) + 'px'
+            box.style.top = (top) + 'px'
+        }, 20);
+    </script>
+</body>
+
+</html>
