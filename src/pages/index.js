@@ -42,6 +42,12 @@ const VueS004 = ()=>import('@/pages/vue-study/S004/index.vue')
 const VueS005 = ()=>import('@/pages/vue-study/S005/index.vue')
 const VueS006 = ()=>import('@/pages/vue-study/S006/index.vue')
 
+const IdcMap = () => import('@/pages/idcMap/index.vue')
+const IdcDeploy = () => import('@/pages/idcMap/deploy/index.vue')
+
+const IframeHost = () => import('@/pages/iframe-demo/iframe-host.vue')
+const IframeChild = () => import('@/pages/iframe-demo/iframe-child.vue')
+
 const routes = [
   {
     id: 10,
@@ -377,6 +383,57 @@ const routes = [
         },
         path:'/s006',
         component:VueS006
+      }
+    ]
+  },
+  {
+    id: 16,
+    text: '机房可视化',
+    icon: 'el-icon-map-location',
+    arr: [
+      {
+        id: 1601,
+        meta: {
+          title: '全国机房地图'
+        },
+        path: '/idc-map',
+        component: IdcMap
+      },
+      {
+        id: 1602,
+        meta: {
+          title: '机房平面布置图'
+        },
+        path: '/idc-deploy',
+        component: IdcDeploy
+      }
+    ]
+  },
+  {
+    id: 17,
+    text: 'iframe嵌入',
+    icon: 'el-icon-monitor',
+    arr: [
+      {
+        id: 1701,
+        meta: {
+          title: 'iframe通信(父页面)'
+        },
+        path: '/iframe-host',
+        component: IframeHost,
+        name: 'IframeHost'
+      },
+      {
+        // 子页面只作为 iframe 的 src 使用，不需要出现在左侧菜单
+        id: 1702,
+        meta: {
+          title: 'iframe子页面',
+          isBack: false
+        },
+        path: '/iframe-child',
+        component: IframeChild,
+        name: 'IframeChild',
+        isNotNav: true
       }
     ]
   }

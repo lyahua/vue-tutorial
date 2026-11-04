@@ -1,0 +1,119 @@
+/**
+ * 机房可视化暗色主题令牌（Vue2 版）
+ *
+ * 目标项目全局是 element-ui 默认蓝色调的浅色后台，机房大屏需要暗色底，
+ * 两套令牌分开维护。各 .vue 的 <style scoped lang="less"> 里显式 @import 本文件。
+ *
+ * 【为什么不能直接铺登录页那条渐变】
+ * 参考稿 background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) 的明度在 55%~60%，
+ * 正文色压在 #667eea 上只有 2.5:1、压在 #764ba2 上只有 4.3:1，都不过 WCAG AA，
+ * 大屏/投影下直接糊；高饱和底还会吃掉状态色（normal/warning/alarm）的辨识度。
+ * 所以这里把同一条渐变降不透明度当「背景层」用，色相与参考稿一致，明度压到 10%~16%，
+ * 数据层继续走暗底亮字。三层职责：
+ *   背景层 @idc-grad-* / @idc-bg-gradient —— 只有页面根与两个主视觉区用
+ *   结构层 @idc-panel / @idc-border / @idc-text —— 面板与文字，保证对比度
+ *   语义层 constants.js 的 STATUS_COLOR / tempColor —— 不参与本次换色
+ */
+
+/**
+ * 背景层
+ *
+ * grad-from / grad-to 取自参考稿原色，只允许出现在低透明叠加和装饰渐变里，
+ * 不允许直接当底色铺文字。
+ */
+@idc-grad-from: #667eea;
+@idc-grad-to: #764ba2;
+// 靛蓝黑 → 紫黑，渐变的两端底色，保证渐变叠上去后色相不跑
+@idc-bg: #0c1130;
+@idc-bg-2: #150f33;
+@idc-bg-gradient: linear-gradient(150deg, @idc-bg 0%, @idc-bg-2 100%);
+// 页面根元素用：参考稿渐变压到 16% 不透明度后叠在暗底上
+@idc-bg-page: linear-gradient(135deg, fade(@idc-grad-from, 16%) 0%, fade(@idc-grad-to, 16%) 100%),
+    @idc-bg-gradient;
+// 地图与平面图容器用：主视觉区在暗面板上再压一层更弱的渐变，
+// 图表侧 backgroundColor 必须设 transparent，否则这层被盖掉
+@idc-bg-viz: linear-gradient(135deg, fade(@idc-grad-from, 10%) 0%, fade(@idc-grad-to, 12%) 100%),
+    @idc-panel;
+
+/** 结构层 */
+@idc-panel: #141a3f;
+@idc-panel-soft: #101537;
+@idc-border: #26305e;
+@idc-text: #dbe2ff;
+@idc-text-dim: #7c88b8;
+// 交互色直接对齐 element-ui 主蓝，避免「靛蓝 + 天蓝 + Element 蓝」三种蓝互相打架
+@idc-accent: #409eff;
+
+/**
+ * 品牌色与荣誉色
+ *
+ * 品牌靛蓝只用于「与数据无关的装饰」（头部横线、面板顶边高光、标题竖条、
+ * 刻度线、hover 反馈）和「荣誉标记的衬底」，不参与任何底色与数据编码。
+ * 上一版用品牌红 #c54b4d，它与 STATUS_COLOR.alarm(#ef4444) 色相几乎重合，
+ * 一旦进入状态或温度编码，「红色深浅 = 严重程度」立刻失效；换成靛蓝后
+ * 红色回归「只有告警才是红」，语义比原来干净。
+ * 金色继续负责「好」（TOP1、核心站点），与靛蓝一冷一暖成对出现，
+ * 小面积处（KPI 下划线、核心站点发光）必须与金色成对，单独出现会显脏。
+ */
+@idc-primary: #667eea;
+// deep/bright 一律从 primary 派生：以后换色号只动 primary 一行，所有渐变自动跟随
+@idc-primary-deep: darken(@idc-primary, 14%);
+@idc-primary-bright: lighten(@idc-primary, 12%);
+@idc-gold: #d4a24c;
+@idc-gold-bright: #f0c674;
+
+// 间距 / 字号 / 圆角，暗色面板与浅色后台各用一套刻度，这里给大屏用的紧凑档
+@idc-gap-xs: 4px;
+@idc-gap-sm: 8px;
+@idc-gap-md: 12px;
+@idc-gap-lg: 16px;
+@idc-font-xs: 10px;
+@idc-font-sm: 12px;
+@idc-font-md: 14px;
+@idc-font-lg: 16px;
+@idc-radius-sm: 4px;
+@idc-radius-md: 6px;
+
+.idc-panel {
+    background: @idc-panel;
+    border: 1px solid @idc-border;
+    border-radius: @idc-radius-md;
+    // 顶边一道极窄高光，只做起分层作用，不是背景色
+    box-shadow: inset 0 1px 0 fade(@idc-primary, 45%);
+}
+
+.idc-panel__title {
+    position: relative;
+    padding: @idc-gap-md;
+    padding-left: @idc-gap-md + 8px;
+    font-size: @idc-font-md;
+    font-weight: 600;
+    color: @idc-text;
+    border-bottom: 1px solid @idc-border;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: @idc-gap-md;
+        width: 2px;
+        height: 12px;
+        margin-top: -6px;
+        border-radius: 1px;
+        background: linear-gradient(180deg, @idc-primary-bright, @idc-primary, @idc-primary-deep);
+    }
+}
+
+/**
+ * element-ui 暗色适配
+ *
+ * 组件库默认浅底，直接放进暗面板会读成「白贴纸」。这里只放 mixin，
+ * 由需要的组件在自己的 scoped 块里用 /deep/ 调用；
+ * 挂到 body 下的浮层（select 下拉）无法被 scoped 命中，
+ * 在非 scoped 块里单独覆盖。
+ */
+.idc-ui-tag(@color) {
+    color: @color;
+    background: fade(@color, 12%);
+    border-color: fade(@color, 45%);
+}
