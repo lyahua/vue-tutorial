@@ -1,6 +1,15 @@
 // 只要修改了vue.config.js这个配置文件，都要重启项目
 const path = require('path')
 module.exports = {
+  chainWebpack: config => {
+    // idc-three/vendor 是三方库本地化副本（three min 构建 + OrbitControls，M8），
+    // dev server 的 eslint-loader 不检查它。注意：.eslintignore 只对命令行 ESLint
+    // 生效，eslint-loader 默认不读它——必须在 webpack 规则层排除。
+    config.module
+      .rule('eslint')
+      .exclude.add(path.resolve(__dirname, 'src/pages/idc-three/vendor'))
+      .end()
+  },
   devServer: {
     // 用代理的方式来解决浏览器同源策略对ajax的限制
     proxy: {

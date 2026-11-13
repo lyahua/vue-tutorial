@@ -49,7 +49,7 @@
  * 返回结构 Metrics：
  * { summary, sites[], links[], alarms[], ts }
  */
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { getMetricsSnapshot, subscribeMetrics } from './api';
 import KpiBar from './components/KpiBar.vue';
 import GeoMap from './components/GeoMap.vue';
@@ -77,7 +77,7 @@ export default {
             return this.metrics.sites.find(s => s.adcode === this.activeAdcode);
         },
         clock() {
-            return moment(this.metrics.ts).format('YYYY-MM-DD HH:mm:ss');
+            return dayjs(this.metrics.ts).format('YYYY-MM-DD HH:mm:ss');
         },
     },
     mounted() {

@@ -34,7 +34,7 @@
  * 每项 { id, siteId, siteName, roomId, rackId, level, title, detail, ts }，
  * 由 SSE 每 2.5s 覆盖一次。
  */
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 export default {
     name: 'AlarmFeed',
@@ -43,7 +43,7 @@ export default {
     },
     methods: {
         fmt(ts) {
-            return moment(ts).format('HH:mm:ss');
+            return dayjs(ts).format('HH:mm:ss');
         },
     },
 };

@@ -1,0 +1,342 @@
+// ==========================================================================
+//  idc-three 全局样式（经 index.vue 的非 scoped 样式块引入，全页生效）
+//
+//  职责：
+//  1. 把 _tokens.scss 的 SCSS 令牌输出为 :root CSS 自定义属性 —— SCSS / 组件 CSS /
+//     JS / ECharts 四处同源，改 _tokens.scss 一处全局生效；
+//  2. 页面底 + 虚线小方格背景（需求 25 行：虚线颜色 rgb(14,27,70)）；
+//  3. 面板 / 面板标题 / 大标题等跨页面通用类（L1 地图页与 L3 机房页共用）；
+//  4. un- 组件（el- 封装）的暗色适配 —— 全局后代选择器，等价于样式穿透。
+// ==========================================================================
+@import './tokens';
+
+// ---------------------------------------------------------------------------
+// :root 变量输出（styles/tokens.js 从这里读取，供 JS / ECharts 使用）
+// ---------------------------------------------------------------------------
+:root {
+    // 主配色（参考图确认）
+    --idc3-bg-page: #{$idc3-bg-page};
+    --idc3-bg-grid: #{$idc3-bg-grid};
+    --idc3-bg-map: #{$idc3-bg-map};
+    --idc3-map-area: #{$idc3-map-area};
+    --idc3-map-area-emphasis: #{$idc3-map-area-emphasis};
+    --idc3-border-province: #{$idc3-border-province};
+    --idc3-glow: #{$idc3-glow};
+    --idc3-title: #{$idc3-title};
+    --idc3-title-glow: #{$idc3-title-glow};
+    --idc3-block-title: #{$idc3-block-title};
+    --idc3-border-block: #{$idc3-border-block};
+    // 结构派生
+    --idc3-panel: #{$idc3-panel};
+    --idc3-panel-soft: #{$idc3-panel-soft};
+    --idc3-text: #{$idc3-text};
+    --idc3-text-dim: #{$idc3-text-dim};
+    --idc3-split-line: #{$idc3-split-line};
+    --idc3-tooltip-bg: #{$idc3-tooltip-bg};
+    --idc3-tooltip-border: #{$idc3-tooltip-border};
+    --idc3-shadow: #{$idc3-shadow};
+    // 语义状态
+    --idc3-status-normal: #{$idc3-status-normal};
+    --idc3-status-warning: #{$idc3-status-warning};
+    --idc3-status-alarm: #{$idc3-status-alarm};
+    --idc3-status-offline: #{$idc3-status-offline};
+    // KPI / 荣誉
+    --idc3-kpi-teal: #{$idc3-kpi-teal};
+    --idc3-kpi-cyan: #{$idc3-kpi-cyan};
+    --idc3-gold: #{$idc3-gold};
+    // 水印图标
+    --idc3-icon-side: #{$idc3-icon-side};
+    --idc3-icon-rim: #{$idc3-icon-rim};
+    // 3D 机房：机柜类型
+    --idc3-rack-compute: #{$idc3-rack-compute};
+    --idc3-rack-network: #{$idc3-rack-network};
+    --idc3-rack-storage: #{$idc3-rack-storage};
+    --idc3-rack-aircon: #{$idc3-rack-aircon};
+    --idc3-rack-power: #{$idc3-rack-power};
+    --idc3-rack-ups: #{$idc3-rack-ups};
+    --idc3-rack-empty: #{$idc3-rack-empty};
+    // 3D 机房：设备类型（U 位色块）
+    --idc3-dev-server: #{$idc3-dev-server};
+    --idc3-dev-storage: #{$idc3-dev-storage};
+    --idc3-dev-network: #{$idc3-dev-network};
+    --idc3-dev-security: #{$idc3-dev-security};
+    // 3D 机房：场景
+    --idc3-scene-bg: #{$idc3-scene-bg};
+    --idc3-floor: #{$idc3-floor};
+    --idc3-floor-grid: #{$idc3-floor-grid};
+    --idc3-cold-aisle: #{$idc3-cold-aisle};
+    --idc3-cover: #{$idc3-cover};
+    --idc3-door: #{$idc3-door};
+    // 刻度
+    --idc3-gap-xs: #{$idc3-gap-xs};
+    --idc3-gap-sm: #{$idc3-gap-sm};
+    --idc3-gap-md: #{$idc3-gap-md};
+    --idc3-gap-lg: #{$idc3-gap-lg};
+    --idc3-font-xs: #{$idc3-font-xs};
+    --idc3-font-sm: #{$idc3-font-sm};
+    --idc3-font-md: #{$idc3-font-md};
+    --idc3-font-lg: #{$idc3-font-lg};
+    --idc3-radius-sm: #{$idc3-radius-sm};
+    --idc3-radius-md: #{$idc3-radius-md};
+}
+
+// ---------------------------------------------------------------------------
+// 虚线小方格背景：SVG data-URI 平铺（每格画上边 + 左边虚线，平铺成整张网格）。
+// 颜色从令牌插值，改 _tokens.scss 网格色即自动跟随。
+// （纯 CSS 渐变只能画实线网格，虚线用 SVG 最稳。）
+// ---------------------------------------------------------------------------
+$grid-stroke: 'rgb(#{red($idc3-bg-grid)},#{green($idc3-bg-grid)},#{blue($idc3-bg-grid)})';
+$idc3-grid-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36'%3E%3Cpath d='M36 .5H.5V36' fill='none' stroke='#{$grid-stroke}' stroke-width='1' stroke-dasharray='5 4'/%3E%3C/svg%3E");
+
+// ---------------------------------------------------------------------------
+// 页面根：底色 + 虚线方格（布局尺寸由各页面自己的 scoped 样式负责）
+// ---------------------------------------------------------------------------
+.idc3-page {
+    color: var(--idc3-text);
+    background-color: var(--idc3-bg-page);
+    background-image: #{$idc3-grid-url};
+}
+
+// ---------------------------------------------------------------------------
+// 通用面板（指标小块 / 地图容器 / 榜单 / 告警）：
+// 需求 27 行 —— 小块标题 #fff、小块边框 rgb(5,69,158)
+// ---------------------------------------------------------------------------
+.idc3-panel {
+    background: var(--idc3-panel);
+    border: 1px solid var(--idc3-border-block);
+    border-radius: var(--idc3-radius-md);
+}
+
+.idc3-panel__title {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: var(--idc3-gap-md);
+    padding-left: calc(var(--idc3-gap-md) + 8px);
+    font-size: var(--idc3-font-md);
+    font-weight: 600;
+    color: var(--idc3-block-title);
+    border-bottom: 1px solid var(--idc3-border-block);
+
+    // 标题左侧的强调竖条
+    &::before {
+        content: '';
+        width: 3px;
+        height: 12px;
+        margin-right: 8px;
+        border-radius: 1px;
+        background: var(--idc3-glow);
+        box-shadow: 0 0 6px var(--idc3-glow);
+    }
+}
+
+// ---------------------------------------------------------------------------
+// 大标题（需求 27 行：rgb(91,234,255)，带同色光晕）
+// ---------------------------------------------------------------------------
+.idc3-title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--idc3-title);
+    text-shadow: 0 0 14px var(--idc3-title-glow);
+}
+
+// ---------------------------------------------------------------------------
+// un- 组件（el- 封装）暗色适配
+// 组件库默认浅色系，进暗底会读成「白贴纸」。
+// 这里用全局后代选择器覆盖（与 ::v-deep 等价的另一种收口方式：
+// 挂到 body 下的浮层无法被 scoped 命中，统一走全局层）。
+//
+// ⚠️ 选择器必须同时写 el-* 和 un-* 两套前缀：
+// 封装组件不改运行时 DOM 类名，渲染出来的是 el-breadcrumb__inner 等 el-* 类；
+// 将来真实项目换成自家组件库（DOM 渲染 un-* 类名）时无需改这里的样式。
+// ---------------------------------------------------------------------------
+.idc3-page {
+    .el-button--text,
+    .un-button--text {
+        color: var(--idc3-text-dim);
+
+        &:hover,
+        &:focus {
+            color: var(--idc3-glow);
+            background: transparent;
+        }
+    }
+
+    .el-breadcrumb__inner,
+    .un-breadcrumb__inner,
+    .el-breadcrumb__inner a,
+    .un-breadcrumb__inner a {
+        font-weight: 400;
+        color: var(--idc3-block-title);
+
+        &:hover {
+            color: var(--idc3-glow);
+        }
+    }
+
+    // element 对面包屑「末级」有一条更高特异性（0,3,x）的灰色规则：
+    // 单项视图里「全国」就是末级，低优先级的白色规则压不过它，
+    // 表现为「默认灰、下钻后才白」。这里写到同等以上特异性（带 .idc3-page 前缀=0,4,x）覆盖
+    .el-breadcrumb__item:last-child .el-breadcrumb__inner,
+    .el-breadcrumb__item:last-child .el-breadcrumb__inner a,
+    .un-breadcrumb__item:last-child .un-breadcrumb__inner,
+    .un-breadcrumb__item:last-child .un-breadcrumb__inner a {
+        font-weight: 400;
+        color: var(--idc3-block-title);
+
+        &:hover {
+            color: var(--idc3-glow);
+        }
+    }
+
+    // 滚动条统一暗色（Chrome / Edge）
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 3px;
+        background: var(--idc3-border-province);
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// 弹框 / 下拉浮层的暗色适配（M4）
+// el-dialog 与 el-select 的下拉面板挂在 body 下，scoped 与 .idc3-page 后代选择器
+// 都命中不了，靠 custom-class / popper-class 在这里全局命中（:root 变量全局可用）。
+// ---------------------------------------------------------------------------
+.idc3-dialog {
+    background: var(--idc3-panel);
+    border: 1px solid var(--idc3-border-block);
+    border-radius: var(--idc3-radius-md);
+    box-shadow: 0 16px 48px var(--idc3-shadow);
+
+    .el-dialog__title {
+        color: var(--idc3-title);
+        font-size: 15px;
+    }
+
+    .el-dialog__headerbtn .el-dialog__close {
+        color: var(--idc3-text-dim);
+
+        &:hover {
+            color: var(--idc3-glow);
+        }
+    }
+
+    .el-dialog__body {
+        color: var(--idc3-text);
+    }
+
+    // 弹框内的输入控件（un-select 等）
+    .el-input__inner {
+        background: var(--idc3-panel-soft);
+        border-color: var(--idc3-border-block);
+        color: var(--idc3-text);
+    }
+
+    .el-button--primary {
+        background: var(--idc3-border-province);
+        border-color: var(--idc3-border-province);
+
+        &:hover,
+        &:focus {
+            background: var(--idc3-glow);
+            border-color: var(--idc3-glow);
+            color: var(--idc3-bg-page);
+        }
+    }
+}
+
+.idc3-popper {
+    background: var(--idc3-panel);
+    border-color: var(--idc3-border-block);
+
+    .el-select-dropdown__item {
+        color: var(--idc3-text);
+    }
+
+    .el-select-dropdown__item.hover,
+    .el-select-dropdown__item:hover {
+        background: var(--idc3-panel-soft);
+        color: var(--idc3-glow);
+    }
+
+    .el-select-dropdown__item.selected {
+        color: var(--idc3-glow);
+    }
+
+    .popper__arrow {
+        border-bottom-color: var(--idc3-border-block);
+        border-top-color: var(--idc3-border-block);
+
+        &::after {
+            border-bottom-color: var(--idc3-panel);
+            border-top-color: var(--idc3-panel);
+        }
+    }
+}
+
+// 3D 舞台方位罗盘（scene.js 动态插入容器，右下角常驻）：
+// 盘面随相机水平朝向旋转，N 指向正北（-z）。北针用强调青，南针灰。
+.idc3-compass {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    z-index: 5;
+    width: 44px;
+    height: 44px;
+    pointer-events: none;
+    background: var(--idc3-tooltip-bg);
+    border: 1px solid var(--idc3-border-block);
+    border-radius: 50%;
+
+    &__dial {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+
+    &__n {
+        position: absolute;
+        top: 2px;
+        left: 50%;
+        font-size: 10px;
+        font-weight: bold;
+        line-height: 1;
+        color: var(--idc3-glow);
+        transform: translateX(-50%);
+    }
+
+    // 北针（上半，强调青，长）+ 南针（下半，灰，短）——旋转由 dial 的 transform 承担
+    &__needle-n {
+        position: absolute;
+        top: 12px;
+        left: 50%;
+        width: 2px;
+        height: 10px;
+        margin-left: -1px;
+        border-radius: 1px;
+        background: var(--idc3-glow);
+    }
+
+    &__needle-s {
+        position: absolute;
+        top: 22px;
+        left: 50%;
+        width: 2px;
+        height: 6px;
+        margin-left: -1px;
+        border-radius: 1px;
+        background: var(--idc3-text-dim);
+    }
+}

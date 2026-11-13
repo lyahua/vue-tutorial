@@ -1,0 +1,68 @@
+{
+    "version": 1,
+    "exportedAt": "2026-11-09 08:00:00",
+    "rooms": [
+        {
+            "id": "SH-R1",
+            "name": "张江一号机房",
+            "siteId": "SH",
+            "siteName": "上海机房",
+            "gridRows": 6,
+            "gridCols": 4,
+            "doors": [
+                { "wall": "N", "offset": 1.8, "width": 1.2, "label": "主入口" }
+            ],
+            "racks": [
+                {
+                    "id": "T-01",
+                    "name": "业务演示柜",
+                    "kind": "compute",
+                    "row": 2,
+                    "col": 0,
+                    "facing": "S",
+                    "uTotal": 42,
+                    "uUsed": 5,
+                    "status": "normal",
+                    "devices": [
+                        {
+                            "id": "T-01-U1",
+                            "rackId": "T-01",
+                            "name": "SERVER-DEMO",
+                            "category": "server",
+                            "model": "R4900-G2",
+                            "vendor": "HPE",
+                            "sn": "SN-DEMO-001",
+                            "startU": 1,
+                            "uSize": 2,
+                            "status": "normal"
+                        },
+                        {
+                            "id": "T-01-U2",
+                            "rackId": "T-01",
+                            "name": "SW-DEMO",
+                            "category": "network",
+                            "model": "S5720-48C",
+                            "vendor": "Huawei",
+                            "sn": "SN-DEMO-002",
+                            "startU": 40,
+                            "uSize": 2,
+                            "status": "normal"
+                        }
+                    ]
+                },
+                {
+                    "id": "T-02",
+                    "name": "网络演示柜",
+                    "kind": "network",
+                    "row": 3,
+                    "col": 0,
+                    "facing": "N",
+                    "uTotal": 42,
+                    "uUsed": 0,
+                    "status": "normal",
+                    "devices": []
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,2 @@
+# 三方库本地化副本（压缩构建产物，不做 lint）
+src/pages/idc-three/vendor/

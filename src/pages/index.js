@@ -44,6 +44,8 @@ const VueS006 = ()=>import('@/pages/vue-study/S006/index.vue')
 
 const IdcMap = () => import('@/pages/idcMap/index.vue')
 const IdcDeploy = () => import('@/pages/idcMap/deploy/index.vue')
+const IdcThree = () => import('@/pages/idc-three/index.vue')
+const IdcThreeRoom = () => import('@/pages/idc-three/room/index.vue')
 
 const IframeHost = () => import('@/pages/iframe-demo/iframe-host.vue')
 const IframeChild = () => import('@/pages/iframe-demo/iframe-child.vue')
@@ -406,6 +408,24 @@ const routes = [
         },
         path: '/idc-deploy',
         component: IdcDeploy
+      },
+      {
+        id: 1603,
+        meta: {
+          title: '三维机房可视化'
+        },
+        path: '/idc-three',
+        component: IdcThree
+      },
+      {
+        // 机房三维页：从总览点击机房点位进入，不进左侧菜单
+        id: 1604,
+        meta: {
+          title: '三维机房'
+        },
+        path: '/idc-three/room',
+        component: IdcThreeRoom,
+        isNotNav: true
       }
     ]
   },

@@ -17,6 +17,11 @@ import Antd from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 Vue.use(Antd);
 
+// un- 前缀组件别名：un-xxx = el-xxx（真实项目即对 el-button 等的封装）
+Vue.component('un-button', ElementUI.Button)
+Vue.component('un-input', ElementUI.Input)
+Vue.component('un-select', ElementUI.Select)
+
 // 图片
 import img from "@/utils/img.js";
 Vue.prototype.$img = img;

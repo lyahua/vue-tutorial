@@ -38,7 +38,9 @@
           style="width: 200px"
         ></el-input>
         <el-select v-model="target" size="mini" style="width: 110px">
-          <el-option label="发给弹框A" value="A"></el-option>
+          <el-option label="发给弹框A" value="A">
+            <div style="border: 1px solid #ccc">asdfasdf</div>
+          </el-option>
           <el-option label="发给弹框B" value="B"></el-option>
         </el-select>
         <el-button size="mini" @click="setTitle">发送标题</el-button>

@@ -62,7 +62,7 @@
  * plan 每收到一次指标推送就整体重取：机柜坐标是静态的，
  * 温度/功率/状态跟着实时数据走，重新取比逐字段合并更不容易出错。
  */
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { getFloorplan, getMetricsSnapshot, getRooms, subscribeMetrics } from '../api';
 import IdcKpiBar from '../components/IdcKpiBar.vue';
 import RackFloorplan from '../components/RackFloorplan.vue';
@@ -169,7 +169,7 @@ export default {
             return Math.round(online.reduce((s, r) => s + r.loadPct, 0) / online.length);
         },
         clock() {
-            return moment(this.metrics.ts).format('YYYY-MM-DD HH:mm:ss');
+            return dayjs(this.metrics.ts).format('YYYY-MM-DD HH:mm:ss');
         },
     },
     watch: {

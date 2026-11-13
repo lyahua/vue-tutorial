@@ -1,0 +1,94 @@
+// ==========================================================================
+//  idc-three 设计令牌（唯一颜色来源）
+//
+//  规则（见 开发文档.md 6.1）：
+//  1. 所有颜色收口在本文件，组件代码里不允许出现颜色字面量；
+//  2. 本文件只被 styles/index.scss 引入，输出 :root CSS 自定义属性；
+//     组件样式一律 var(--idc3-*)，JS / ECharts / three 侧经 styles/tokens.js 读取；
+//  3. 换皮肤 = 只改这里。
+//
+//  配色基调（2026-11-04 需求方提供参考图确认）：
+//  「基础设施监控平台」科技蓝大屏 —— 深藏青底(#0A1A3C) + 科技网格 + 亮青描边发光(#3DE0FF)，
+//  正常数据青绿(#2AD5A0)/青(#33DDFF)，告警橙黄(#F5A623)，严重红(#FF4D4D)；
+//  3D 机房参考「珠海本部机房A」：浅灰白方格地板 + 深灰机柜 + 灰白弧形罩 + 正面青色网格。
+// ==========================================================================
+
+// —— 主配色（参考图确认，覆盖需求文档原色）——
+$idc3-bg-page: rgb(10, 26, 60); // 整体背景 #0A1A3C
+$idc3-bg-grid: rgb(20, 44, 84); // 背景虚线小方格（科技网格）
+$idc3-bg-map: rgb(13, 34, 71); // 地图/3D 舞台容器底 #0D2247
+$idc3-map-area: rgb(30, 78, 140); // 地图省份面 #1E4E8C
+$idc3-map-area-emphasis: rgb(42, 107, 181); // 地图 hover 面 #2A6BB5
+$idc3-border-province: rgb(61, 224, 255); // 省份边界亮青 #3DE0FF（发光勾边）
+$idc3-glow: rgb(61, 224, 255); // 全局强调青 #3DE0FF
+$idc3-title: rgb(91, 234, 255); // 大标题（需求给定，同族青）
+$idc3-title-glow: rgba(61, 224, 255, 0.45);
+$idc3-block-title: #ffffff; // 指标小块标题
+$idc3-border-block: rgb(28, 90, 186); // 指标小块边框（提亮一档）
+
+// —— 结构层（派生：深藏青家族）——
+$idc3-panel: rgb(15, 38, 80); // 面板底
+$idc3-panel-soft: rgb(12, 31, 66); // hover / 分层底
+$idc3-text: #d9e8ff; // 正文
+$idc3-text-dim: #8fa3c9; // 次要文字
+$idc3-split-line: rgba(61, 224, 255, 0.16); // 图表分割线
+$idc3-tooltip-bg: rgba(10, 26, 60, 0.95); // 图表浮层底
+$idc3-tooltip-border: rgba(61, 224, 255, 0.55); // 图表浮层边
+$idc3-shadow: rgba(4, 10, 42, 0.65); // 弹层/浮窗投影
+
+// —— 语义状态色（参考图：正常=青绿、预警=橙黄、严重=红）——
+$idc3-status-normal: #2ad5a0;
+$idc3-status-warning: #f5a623;
+$idc3-status-alarm: #ff4d4d;
+$idc3-status-offline: #64748b;
+
+// —— KPI 专用色（参考图数据色）——
+$idc3-kpi-teal: #2ad5a0; // 青绿
+$idc3-kpi-cyan: #33ddff; // 青色
+
+// —— 荣誉金（TOP1 / 核心站点标记）——
+$idc3-gold: #d4a24c;
+
+// —— 指标卡水印图标描边（派生）——
+$idc3-icon-side: rgb(4, 8, 24);
+$idc3-icon-rim: rgba(255, 255, 255, 0.4);
+
+// ==========================================================================
+//  3D 机房：机柜类型色 / 设备类型色 / 场景色
+//  （参考「珠海本部机房A」：深灰机柜 + 浅灰白地板 + 灰白弧形罩）
+// ==========================================================================
+
+// —— 机柜类型色（深灰主体，弱化色相，保留类型辨识）——
+$idc3-rack-compute: #46525f; // 设备机柜（深灰，图1机柜主体色）
+$idc3-rack-network: #2c5a6e; // 网络机柜
+$idc3-rack-storage: #6b5a33; // 存储机柜
+$idc3-rack-aircon: #1e5f58; // 空调机柜
+$idc3-rack-power: #4c3a8c; // 配电机柜
+$idc3-rack-ups: #3d3799; // UPS 电池柜
+$idc3-rack-empty: #2d3644; // 预留柜位
+
+// —— 设备类型色（U 位色块，图1正面青色网格系的类型化演绎）——
+$idc3-dev-server: #33ddff; // 服务器（青）
+$idc3-dev-storage: #8b5cf6; // 存储
+$idc3-dev-network: #2ad5a0; // 网络（青绿）
+$idc3-dev-security: #f5a623; // 安全（橙）
+
+// —— 3D 场景 ——
+$idc3-scene-bg: rgb(10, 26, 60); // 3D 舞台背景（与页面底同族）
+$idc3-floor: #c7cdd8; // 机房地板（浅灰白方格，图1）
+$idc3-floor-grid: rgb(102, 115, 138); // 地板格线（灰蓝，压在浅色地板上）
+$idc3-cold-aisle: rgba(42, 213, 160, 0.2); // 冷通道地贴（青绿）
+$idc3-cover: #e9edf4; // 冷通道弧形顶罩（灰白半透玻璃，图1）
+$idc3-door: #d9dee8; // 冷通道端门（灰白半透）
+
+// —— 刻度：间距 / 字号 / 圆角（大屏紧凑档）——
+$idc3-gap-xs: 4px;
+$idc3-gap-sm: 8px;
+$idc3-gap-md: 12px;
+$idc3-gap-lg: 16px;
+$idc3-font-xs: 10px;
+$idc3-font-sm: 12px;
+$idc3-font-md: 14px;
+$idc3-font-lg: 16px;
+$idc3-radius-sm: 4px;
+$idc3-radius-md: 6px;

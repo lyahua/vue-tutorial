@@ -1,0 +1,25 @@
+{
+    "id": "IMP-01",
+    "name": "导入演示柜",
+    "kind": "compute",
+    "row": 4,
+    "col": 3,
+    "facing": "S",
+    "uTotal": 42,
+    "uUsed": 1,
+    "status": "normal",
+    "devices": [
+        {
+            "id": "IMP-01-U1",
+            "rackId": "IMP-01",
+            "name": "SERVER-IMPORT",
+            "category": "server",
+            "model": "R4900-G2",
+            "vendor": "HPE",
+            "sn": "SN-IMP-001",
+            "startU": 1,
+            "uSize": 1,
+            "status": "normal"
+        }
+    ]
+}
